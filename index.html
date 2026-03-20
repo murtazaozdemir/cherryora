@@ -1,0 +1,51 @@
+# Navigate to your folder
+cd /Users/Shared/cherryora
+
+# Create a simple index.html file
+cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cherryora.com</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.2);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍒 cherryora.com</h1>
+        <p>Your website is live on Cloudflare Pages!</p>
+        <p>🚀 Coming soon</p>
+    </div>
+</body>
+</html>
+EOF
+
+# Verify the file was created
+ls -la
