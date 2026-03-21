@@ -750,59 +750,6 @@
             to { opacity: 0; pointer-events: none; }
         }
 
-        /* Feature cards */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-            margin: 56px 0;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.3s;
-            border: 1px solid rgba(179, 30, 63, 0.08);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 40px -18px rgba(179, 30, 63, 0.2);
-        }
-
-        .feature-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .feature-content {
-            padding: 20px;
-        }
-
-        .feature-badge {
-            background: var(--cherry-soft);
-            color: var(--cherry-deep);
-            padding: 4px 10px;
-            border-radius: 16px;
-            font-size: 11px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .feature-card p {
-            color: #8a7a72;
-            font-size: 13px;
-        }
-
         /* Quote */
         .quote-section {
             background: linear-gradient(135deg, var(--cherry-deep), #962e48);
@@ -826,56 +773,206 @@
             font-size: 15px;
         }
 
-        /* Garden */
-        .garden-section {
-            background: var(--cherry-warm);
-            border-radius: 36px;
-            padding: 48px;
-            margin: 56px 0;
-        }
-
-        .garden-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .garden-header h2 {
-            font-size: 38px;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-        }
-
-        .garden-header p {
-            color: #8a7a72;
-            margin-top: 8px;
-        }
-
-        .garden-grid {
+        /* SINGLE FEATURE SHOWCASE */
+        .feature-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
+            gap: 60px;
+            align-items: center;
+            margin: 80px 0;
+            padding: 0 20px;
         }
 
-        .garden-card {
-            background: white;
-            border-radius: 24px;
+        .feature-showcase-image {
+            border-radius: 28px;
             overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(179, 30, 63, 0.2);
+            transition: transform 0.3s;
         }
 
-        .garden-card img {
+        .feature-showcase-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-showcase-image img {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        .garden-content {
-            padding: 20px;
+        .feature-showcase-content h2 {
+            font-size: 38px;
+            font-family: 'Playfair Display', serif;
+            color: var(--cherry-deep);
+            margin-bottom: 16px;
+            line-height: 1.2;
         }
 
-        .garden-content h3 {
-            font-size: 18px;
-            margin-bottom: 6px;
+        .feature-showcase-content p {
+            font-size: 17px;
+            color: #6a5a52;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .feature-badge-large {
+            display: inline-block;
+            background: var(--cherry-soft);
             color: var(--cherry-deep);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #5a4a44;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: var(--cherry-soft);
+            color: var(--cherry-deep);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* HOW IT WORKS SECTION */
+        .how-it-works {
+            background: var(--cherry-warm);
+            border-radius: 36px;
+            padding: 60px 48px;
+            margin: 56px 0;
+            text-align: center;
+        }
+
+        .how-it-works h2 {
+            font-size: 32px;
+            font-family: 'Playfair Display', serif;
+            color: var(--cherry-deep);
+            margin-bottom: 40px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--cherry-deep);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c2420;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: #8a7a72;
+            line-height: 1.5;
+        }
+
+        /* SINGLE GARDEN SHOWCASE */
+        .garden-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 80px 0;
+            padding: 0 20px;
+        }
+
+        .garden-showcase-content h2 {
+            font-size: 38px;
+            font-family: 'Playfair Display', serif;
+            color: var(--cherry-deep);
+            margin-bottom: 16px;
+        }
+
+        .garden-showcase-content > p {
+            font-size: 17px;
+            color: #6a5a52;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .garden-stats {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .garden-stat {
+            text-align: center;
+        }
+
+        .garden-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--cherry-deep);
+            display: block;
+        }
+
+        .garden-stat-label {
+            font-size: 13px;
+            color: #8a7a72;
+        }
+
+        .garden-showcase-image {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(179, 30, 63, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .garden-showcase-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .garden-showcase-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Info Grid */
@@ -979,7 +1076,7 @@
             border-top: 1px solid rgba(179, 30, 63, 0.08);
         }
 
-        /* RESPONSIVE - FIXED for mobile navigation */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             .container {
                 padding: 0 24px;
@@ -1015,13 +1112,30 @@
             .iphone-shell {
                 transform: scale(0.8);
             }
-            
-            .feature-grid {
+
+            .feature-showcase,
+            .garden-showcase {
                 grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
             }
-            
-            .garden-grid {
+
+            .feature-showcase-image,
+            .garden-showcase-image {
+                order: -1;
+            }
+
+            .feature-list li {
+                justify-content: center;
+            }
+
+            .steps-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .garden-stats {
+                justify-content: center;
             }
             
             .info-grid {
@@ -1035,9 +1149,9 @@
             .quote-section {
                 padding: 40px 28px;
             }
-            
-            .garden-section {
-                padding: 32px 24px;
+
+            .how-it-works {
+                padding: 40px 28px;
             }
             
             .cta-section {
@@ -1066,13 +1180,18 @@
             .iphone-shell {
                 transform: scale(0.7);
             }
+
+            .feature-showcase-content h2,
+            .garden-showcase-content h2 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Navigation - FREE DOWNLOAD button stays on right, stacks nicely on mobile -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
             <span class="logo-icon">🍒</span>
@@ -1089,25 +1208,20 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero with LIVE iPhone -->
     <div class="hero">
         <div class="hero-left">
             <h1>"Find the beauty that was always already here"</h1>
             <p>A daily practice of noticing, savoring, and living more beautifully. Your mindful companion for romanticizing everyday moments.</p>
         </div>
         <div class="hero-image">
-            <!-- LIVE INTERACTIVE iPhone Mockup -->
             <div class="iphone-shell" id="iphoneShell">
                 <div class="iphone-notch">
                     <div class="iphone-speaker"></div>
                     <div class="iphone-camera-dot"></div>
                 </div>
                 <div class="cherry-app-embed" id="cherryAppEmbed">
-                    
-                    <!-- Flash Effect -->
                     <div class="capturing-flash-embed hidden-embed" id="flashEmbed"></div>
-                    
-                    <!-- Capture Overlay -->
                     <div class="capture-overlay-embed hidden-embed" id="captureOverlayEmbed">
                         <div class="overlay-cherry-embed">🍒</div>
                         <div class="overlay-poem-embed" id="overlayPoemEmbed"></div>
@@ -1118,11 +1232,7 @@
                             <button class="overlay-discard-embed" onclick="discardCaptureEmbed()">Discard</button>
                         </div>
                     </div>
-
-                    <!-- Main Screen -->
                     <div class="screen-embed" id="mainScreenEmbed"></div>
-
-                    <!-- Bottom Nav -->
                     <div class="bottom-nav-embed">
                         <div class="nav-tab-embed active" onclick="setTabEmbed('home')">
                             <span class="nav-icon-embed">🏠</span>
@@ -1147,61 +1257,75 @@
         </div>
     </div>
 
-    <!-- Feature cards -->
-    <div class="feature-grid">
-        <div class="feature-card">
-            <img src="images/image5.png" alt="Main Character">
-            <div class="feature-content">
-                <span class="feature-badge">START HERE</span>
-                <h3>Become the Main Character of Your Own Life</h3>
-                <p>4 lessons · Begins with intention, ends with transformation</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="images/image5.png" alt="Ways to Romanticize">
-            <div class="feature-content">
-                <span class="feature-badge">ALL TOPICS</span>
-                <h3>Ways to Romanticize Life</h3>
-                <p>Turning the ordinary into the exquisite · Guide, List, Practice + more</p>
-            </div>
-        </div>
-        <div class="feature-card">
-            <img src="images/image5.png" alt="Main Character Energy">
-            <div class="feature-content">
-                <span class="feature-badge">GUIDE</span>
-                <h3>Main Character Energy</h3>
-                <p>You are the protagonist of your own story</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Quote -->
     <div class="quote-section">
         <blockquote>"Romanticizing your life is a form of mindfulness — a shift in perspective that allows you to appreciate everyday life and mundane things."</blockquote>
         <cite>— Samantha Vincenty, SELF Magazine</cite>
     </div>
 
-    <!-- Garden -->
-    <div class="garden-section">
-        <div class="garden-header">
-            <h2>Your Garden</h2>
-            <p>6 romanticized moments · ⭐ 12 day streak · 6/100 moments</p>
+    <!-- SINGLE Feature Showcase (removed 2 duplicates) -->
+    <div class="feature-showcase">
+        <div class="feature-showcase-image">
+            <img src="images/image5.png" alt="Main Character Energy">
         </div>
-        <div class="garden-grid">
-            <div class="garden-card">
-                <img src="images/image13.png" alt="Morning Coffee">
-                <div class="garden-content">
-                    <h3>Morning Coffee</h3>
-                    <p>"the first sip is always a ceremony" — Mar 6</p>
+        <div class="feature-showcase-content">
+            <span class="feature-badge-large">Start Here</span>
+            <h2>Become the Main Character of Your Own Life</h2>
+            <p>Transform your perspective with our guided lessons on main character energy. Learn to move through your life with intention, presence, and grace.</p>
+            <ul class="feature-list">
+                <li>4 transformative lessons</li>
+                <li>Daily mindfulness practices</li>
+                <li>Personal reflection prompts</li>
+                <li>Community support</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- How It Works (NEW section for balance) -->
+    <div class="how-it-works">
+        <h2>How Cherry Works</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Notice</h3>
+                <p>Receive daily invitations to pause and observe the beauty around you</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Capture</h3>
+                <p>Cherry-ish moments with your camera and poetic reflections</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Cultivate</h3>
+                <p>Watch your garden grow as you build a practice of presence</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SINGLE Garden Showcase (removed 1 duplicate) -->
+    <div class="garden-showcase">
+        <div class="garden-showcase-content">
+            <h2>Your Personal Garden</h2>
+            <p>A living archive of your most cherished moments. Each memory is a seed that grows into a beautiful practice of mindfulness.</p>
+            <div class="garden-stats">
+                <div class="garden-stat">
+                    <span class="garden-stat-number">6</span>
+                    <span class="garden-stat-label">Moments</span>
+                </div>
+                <div class="garden-stat">
+                    <span class="garden-stat-number">12</span>
+                    <span class="garden-stat-label">Day Streak</span>
+                </div>
+                <div class="garden-stat">
+                    <span class="garden-stat-number">100</span>
+                    <span class="garden-stat-label">Goal</span>
                 </div>
             </div>
-            <div class="garden-card">
-                <img src="images/image13.png" alt="Kitchen Window">
-                <div class="garden-content">
-                    <h3>Kitchen Window</h3>
-                    <p>"green things reaching toward light" — Mar 5</p>
-                </div>
-            </div>
+            <p style="font-size: 15px; color: #8a7a72; font-style: italic;">"the first sip is always a ceremony" — Morning Coffee, Mar 6</p>
+        </div>
+        <div class="garden-showcase-image">
+            <img src="images/image13.png" alt="Your Garden">
         </div>
     </div>
 
@@ -1247,7 +1371,6 @@
 
 <!-- LIVE APP JAVASCRIPT -->
 <script>
-// Embedded App Data
 const poemsEmbed = [
     "the light fell just so, and the world held its breath",
     "in ordinary moments, extraordinary grace",
@@ -1303,15 +1426,12 @@ function rndEmbed(arr) {
 
 function setTabEmbed(tab) {
     activeTabEmbed = tab;
-    
-    // Update nav tabs
     document.querySelectorAll('.nav-tab-embed').forEach(t => t.classList.remove('active'));
     const navTabs = document.querySelectorAll('.nav-tab-embed');
     if (tab === 'home') navTabs[0].classList.add('active');
     else if (tab === 'garden') navTabs[1].classList.add('active');
     else if (tab === 'learn') navTabs[2].classList.add('active');
     else if (tab === 'profile') navTabs[3].classList.add('active');
-    
     renderEmbed();
 }
 
