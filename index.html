@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Cherry — Romanticize Your Life</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -86,9 +87,11 @@
             color: var(--cherry-bright);
         }
 
+        /* FIXED: Explicit white color for app badge, overriding nav-links a */
+        .nav-links a.app-badge,
         .app-badge {
             background: var(--cherry-deep);
-            color: white;
+            color: white !important;
             padding: 8px 20px;
             border-radius: 40px;
             text-decoration: none;
@@ -99,11 +102,20 @@
             gap: 6px;
             transition: all 0.3s;
             white-space: nowrap;
+            border: none;
+            cursor: pointer;
         }
 
         .app-badge:hover {
             background: var(--cherry-bright);
             transform: translateY(-2px);
+            color: white !important;
+        }
+
+        /* Ensure icon is also white */
+        .app-badge i {
+            color: white;
+            font-size: 14px;
         }
 
         /* Hero */
@@ -132,41 +144,610 @@
             max-width: 480px;
         }
 
-        .hero-image img {
-            width: 100%;
-            max-width: 340px;
-            height: auto;
-            border-radius: 44px;
-            box-shadow: 0 30px 50px -20px rgba(179, 30, 63, 0.25);
-            display: block;
-            margin: 0 auto;
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            position: relative;
         }
 
-        /* Two column images */
-        .two-column {
+        /* LIVE iPhone Mockup Styles - Scaled down for landing page */
+        .iphone-shell {
+            position: relative;
+            width: 280px;
+            height: 570px;
+            background: #1a0408;
+            border-radius: 40px;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px #3a1a22, 0 0 0 8px #1a0408, 0 0 0 10px #2a1018,
+                       0 30px 60px rgba(0,0,0,.4), 0 0 40px rgba(200,16,46,.08);
+            transform: scale(0.9);
+        }
+
+        .iphone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 26px;
+            background: #0d0205;
+            border-radius: 0 0 16px 16px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .iphone-speaker {
+            width: 40px;
+            height: 4px;
+            background: #1a0810;
+            border-radius: 2px;
+        }
+
+        .iphone-camera-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1a0810;
+            border: 1px solid #2a1018;
+        }
+
+        .cherry-app-embed {
+            font-family: 'DM Sans', sans-serif;
+            background: #FDF8F0;
+            width: 280px;
+            height: 570px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-embed {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 60px;
+            scrollbar-width: none;
+        }
+
+        .screen-embed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hidden-embed {
+            display: none !important;
+        }
+
+        /* Scaled Home Header */
+        .home-header-embed {
+            background: linear-gradient(180deg, #8B0017 0%, #C8102E 45%, #E8607A 70%, #F2B8C0 88%, #FDF8F0 100%);
+            padding: 35px 16px 45px;
+            position: relative;
+        }
+
+        .home-header-embed::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            height: 24px;
+            background: #FDF8F0;
+            filter: blur(6px);
+            z-index: 0;
+        }
+
+        .home-brand-embed {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-brand-name-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: white;
+        }
+
+        .home-tagline-embed {
+            font-size: 8px;
+            color: rgba(255,255,255,.7);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scaled Invitation Card */
+        .invitation-card-embed {
+            background: #FDF8F0;
+            border-radius: 14px;
+            margin: -18px 14px 0;
+            padding: 14px 12px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
+
+        .invitation-label-embed {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #C8102E;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .invitation-text-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.35;
+            color: #2a1015;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .invitation-cta-embed {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #C8102E;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 7px 12px;
+            font-size: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .invitation-cta-embed:hover {
+            background: #8B0017;
+            transform: translateY(-1px);
+        }
+
+        /* Scaled Section */
+        .section-label-embed {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #999;
+            font-weight: 500;
+            padding: 14px 16px 6px;
+        }
+
+        .mini-scroll-embed {
+            display: flex;
+            gap: 8px;
+            padding: 0 14px 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .mini-scroll-embed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mini-card-embed {
+            background: white;
+            border-radius: 12px;
+            padding: 10px 12px;
+            min-width: 90px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            border: 1px solid rgba(200,120,130,.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .mini-card-embed:hover {
+            transform: translateY(-2px);
+        }
+
+        .mini-card-emoji-embed {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .mini-card-text-embed {
+            font-size: 9px;
+            color: #444;
+            line-height: 1.3;
+        }
+
+        /* Scaled Memory Scroll */
+        .memory-scroll-embed {
+            display: flex;
+            gap: 10px;
+            padding: 0 14px 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .memory-scroll-embed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .memory-card-embed {
+            border-radius: 14px;
+            min-width: 120px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 12px 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+            transition: transform 0.2s;
+        }
+
+        .memory-card-embed:hover {
+            transform: translateY(-3px);
+        }
+
+        .memory-card-emoji-embed {
+            font-size: 28px;
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .memory-card-poem-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 10px;
+            font-style: italic;
+            color: rgba(40,10,15,.85);
+            line-height: 1.3;
+            background: rgba(255,255,255,.7);
+            backdrop-filter: blur(4px);
+            padding: 6px 8px;
+            border-radius: 8px;
+        }
+
+        .memory-card-date-embed {
+            font-size: 8px;
+            color: rgba(40,10,15,.5);
+            margin-top: 3px;
+        }
+
+        /* Scaled Mood Grid */
+        .mood-vibe-grid-embed {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin: 48px 0;
+            gap: 8px;
+            padding: 0 14px;
         }
 
-        .image-wrapper {
+        .mood-vibe-card-embed {
+            border-radius: 14px;
+            padding: 12px 10px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .mood-vibe-card-embed:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(200,16,46,.15);
+        }
+
+        .mood-vibe-card-embed.selected {
+            background: #C8102E;
+            box-shadow: 0 4px 16px rgba(200,16,46,.3);
+        }
+
+        .mood-vibe-emoji-embed {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .mood-vibe-label-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            font-style: italic;
+            color: #2a1015;
+        }
+
+        .mood-vibe-card-embed.selected .mood-vibe-label-embed {
+            color: white;
+        }
+
+        /* Scaled Bottom Nav */
+        .bottom-nav-embed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,.06);
+            display: flex;
+            align-items: center;
+            padding: 8px 14px 14px;
+            z-index: 50;
+        }
+
+        .nav-tab-embed {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            color: #ccc;
+            font-size: 7px;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 2px;
+        }
+
+        .nav-tab-embed.active {
+            color: #C8102E;
+        }
+
+        .nav-tab-embed:hover {
+            color: #C8102E;
+        }
+
+        .nav-icon-embed {
+            font-size: 16px;
+        }
+
+        .nav-cherry-embed {
+            flex: 0 0 auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #C8102E, #8B0017);
+            box-shadow: 0 2px 12px rgba(200,16,46,.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            margin-top: -16px;
+            border: 2px solid white;
+            transition: all 0.2s;
+        }
+
+        .nav-cherry-embed:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Camera Screen */
+        .cherry-screen-embed {
+            background: #0f0408;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .camera-viewfinder-embed {
             width: 100%;
-            border-radius: 28px;
+            flex: 1;
+            min-height: 320px;
+            background: linear-gradient(180deg,#1a0510 0%,#2d0d1a 40%,#160308 100%);
+            position: relative;
             overflow: hidden;
-            background: #f5e8e4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .image-wrapper img {
+        .camera-grain-embed {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: .5;
+            pointer-events: none;
+        }
+
+        .camera-scene-text-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: rgba(255,220,210,.35);
+            text-align: center;
+            line-height: 1.4;
+            padding: 0 30px;
+        }
+
+        .filter-strip-embed {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            background: rgba(0,0,0,.4);
             width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 28px;
-            transition: transform 0.3s;
         }
 
-        .image-wrapper img:hover {
-            transform: scale(1.01);
+        .filter-strip-embed::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-pill-embed {
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 50px;
+            padding: 5px 12px;
+            font-size: 10px;
+            color: rgba(255,255,255,.7);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .filter-pill-embed.active {
+            background: #C8102E;
+            border-color: #C8102E;
+            color: white;
+        }
+
+        .cherry-capture-zone-embed {
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0f0408;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .cherry-btn-outer-embed {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(200,16,46,.2);
+            border: 2px solid rgba(200,16,46,.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            animation: pulseGlowEmbed 3s infinite;
+        }
+
+        .cherry-btn-outer-embed:hover {
+            transform: scale(1.05);
+            background: rgba(200,16,46,.3);
+        }
+
+        .cherry-btn-inner-embed {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(145deg,#C8102E,#8B0017);
+            box-shadow: 0 0 16px rgba(200,16,46,.6), 0 4px 12px rgba(0,0,0,.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        @keyframes pulseGlowEmbed {
+            0%,100% { box-shadow: 0 0 0 0 rgba(200,16,46,.3); }
+            50% { box-shadow: 0 0 0 8px rgba(200,16,46,0); }
+        }
+
+        .capture-hint-embed {
+            font-size: 9px;
+            color: rgba(255,255,255,.35);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        /* Capture Overlay */
+        .capture-overlay-embed {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            background: linear-gradient(180deg,rgba(15,4,8,.97) 0%,rgba(30,8,16,.99) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .overlay-cherry-embed {
+            font-size: 48px;
+            margin-bottom: 18px;
+            animation: floatCherryEmbed 3s ease-in-out infinite;
+        }
+
+        @keyframes floatCherryEmbed {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .overlay-poem-embed {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255,220,215,.95);
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .overlay-divider-embed {
+            width: 30px;
+            height: 1px;
+            background: rgba(200,16,46,.5);
+            margin: 6px auto 14px;
+        }
+
+        .overlay-prompt-embed {
+            font-size: 11px;
+            color: rgba(255,255,255,.5);
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .overlay-actions-embed {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .overlay-save-embed {
+            flex: 1;
+            background: #C8102E;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .overlay-save-embed:hover {
+            background: #8B0017;
+        }
+
+        .overlay-discard-embed {
+            flex: 1;
+            background: transparent;
+            color: rgba(255,255,255,.4);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50px;
+            padding: 12px;
+            font-size: 11px;
+            font-family: 'DM Sans', sans-serif;
+            cursor: pointer;
+        }
+
+        /* Flash */
+        .capturing-flash-embed {
+            position: absolute;
+            inset: 0;
+            background: white;
+            z-index: 999;
+            animation: flashOutEmbed 0.5s ease-out forwards;
+        }
+
+        @keyframes flashOutEmbed {
+            from { opacity: .9; }
+            to { opacity: 0; pointer-events: none; }
         }
 
         /* Feature cards */
@@ -376,11 +957,18 @@
             font-weight: 600;
             margin-top: 24px;
             transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .download-btn:hover {
             background: var(--cherry-bright);
             transform: translateY(-2px);
+        }
+
+        .download-btn i {
+            color: white;
+            font-size: 16px;
         }
 
         .footer {
@@ -423,16 +1011,16 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+
+            .iphone-shell {
+                transform: scale(0.8);
+            }
             
             .feature-grid {
                 grid-template-columns: 1fr;
             }
             
             .garden-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .two-column {
                 grid-template-columns: 1fr;
             }
             
@@ -474,6 +1062,10 @@
             .hero-left h1 {
                 font-size: 34px;
             }
+
+            .iphone-shell {
+                transform: scale(0.7);
+            }
         }
     </style>
 </head>
@@ -504,17 +1096,54 @@
             <p>A daily practice of noticing, savoring, and living more beautifully. Your mindful companion for romanticizing everyday moments.</p>
         </div>
         <div class="hero-image">
-            <img src="images/image11.png" alt="Cherry App">
-        </div>
-    </div>
+            <!-- LIVE INTERACTIVE iPhone Mockup -->
+            <div class="iphone-shell" id="iphoneShell">
+                <div class="iphone-notch">
+                    <div class="iphone-speaker"></div>
+                    <div class="iphone-camera-dot"></div>
+                </div>
+                <div class="cherry-app-embed" id="cherryAppEmbed">
+                    
+                    <!-- Flash Effect -->
+                    <div class="capturing-flash-embed hidden-embed" id="flashEmbed"></div>
+                    
+                    <!-- Capture Overlay -->
+                    <div class="capture-overlay-embed hidden-embed" id="captureOverlayEmbed">
+                        <div class="overlay-cherry-embed">🍒</div>
+                        <div class="overlay-poem-embed" id="overlayPoemEmbed"></div>
+                        <div class="overlay-divider-embed"></div>
+                        <div class="overlay-prompt-embed">What made you feel alive?</div>
+                        <div class="overlay-actions-embed">
+                            <button class="overlay-save-embed" onclick="saveToGardenEmbed()">Save 🌿</button>
+                            <button class="overlay-discard-embed" onclick="discardCaptureEmbed()">Discard</button>
+                        </div>
+                    </div>
 
-    <!-- Two column images -->
-    <div class="two-column">
-        <div class="image-wrapper">
-            <img src="images/image6.png" alt="Today's Invitation">
-        </div>
-        <div class="image-wrapper">
-            <img src="images/image10.png" alt="Golden Hour">
+                    <!-- Main Screen -->
+                    <div class="screen-embed" id="mainScreenEmbed"></div>
+
+                    <!-- Bottom Nav -->
+                    <div class="bottom-nav-embed">
+                        <div class="nav-tab-embed active" onclick="setTabEmbed('home')">
+                            <span class="nav-icon-embed">🏠</span>
+                            <span>Home</span>
+                        </div>
+                        <div class="nav-tab-embed" onclick="setTabEmbed('garden')">
+                            <span class="nav-icon-embed">🌿</span>
+                            <span>Garden</span>
+                        </div>
+                        <div class="nav-cherry-embed" onclick="setTabEmbed('cherry')">🍒</div>
+                        <div class="nav-tab-embed" onclick="setTabEmbed('learn')">
+                            <span class="nav-icon-embed">📖</span>
+                            <span>Learn</span>
+                        </div>
+                        <div class="nav-tab-embed" onclick="setTabEmbed('profile')">
+                            <span class="nav-icon-embed">👤</span>
+                            <span>Profile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -615,6 +1244,303 @@
         <p style="margin-top: 20px;">© 2026 Cherry App</p>
     </footer>
 </div>
+
+<!-- LIVE APP JAVASCRIPT -->
+<script>
+// Embedded App Data
+const poemsEmbed = [
+    "the light fell just so, and the world held its breath",
+    "in ordinary moments, extraordinary grace",
+    "you noticed. that is everything.",
+    "beauty was always here, waiting to be seen",
+    "time slows when we choose to look",
+    "this is the life you are living, love it",
+    "soft and golden, this ordinary afternoon"
+];
+
+const invitationsEmbed = [
+    "Notice the quality of light where you are ☀️",
+    "What texture is closest to your hand right now?",
+    "Find one thing that smells like home 🌿",
+    "Look for the colour that catches your eye today",
+    "What sound is keeping you company right now?",
+    "Notice how the steam rises from your cup ☕"
+];
+
+const miniChallengesEmbed = [
+    {emoji: "📸", text: "Photograph your coffee"},
+    {emoji: "🌿", text: "Find something green"},
+    {emoji: "✍️", text: "One gratitude sentence"},
+    {emoji: "🌅", text: "Notice the sky today"},
+    {emoji: "🕯️", text: "Light a candle tonight"},
+    {emoji: "🎵", text: "Song for this moment"}
+];
+
+let momentsEmbed = [
+    {id: 1, color: "#E8D5C4", emoji: "☕", label: "Morning Coffee", poem: "the first sip is always a ceremony", date: "Mar 6", mood: "cozy"},
+    {id: 2, color: "#C8DDD4", emoji: "🌿", label: "Kitchen Window", poem: "green things reaching toward light", date: "Mar 5", mood: "calm"},
+    {id: 3, color: "#D4C8E0", emoji: "📚", label: "Reading Hour", poem: "lost and found in equal measure", date: "Mar 4", mood: "dreamy"},
+    {id: 4, color: "#E8D4C8", emoji: "🌅", label: "Sunset Walk", poem: "the day said goodbye in gold", date: "Mar 3", mood: "joyful"},
+];
+
+const moodVibesEmbed = [
+    {emoji: "🌸", label: "Quietly hopeful"},
+    {emoji: "✦", label: "Boldly alive"},
+    {emoji: "🕯️", label: "Tenderly fragile"},
+    {emoji: "🌙", label: "Dreamily curious"},
+    {emoji: "🍂", label: "Deeply grounded"},
+    {emoji: "🌹", label: "Wildly free"},
+];
+
+let activeTabEmbed = 'home';
+let selectedMoodVibeEmbed = null;
+let currentInvitationEmbed = invitationsEmbed[Math.floor(Math.random() * invitationsEmbed.length)];
+let capturedPoemEmbed = '';
+
+function rndEmbed(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function setTabEmbed(tab) {
+    activeTabEmbed = tab;
+    
+    // Update nav tabs
+    document.querySelectorAll('.nav-tab-embed').forEach(t => t.classList.remove('active'));
+    const navTabs = document.querySelectorAll('.nav-tab-embed');
+    if (tab === 'home') navTabs[0].classList.add('active');
+    else if (tab === 'garden') navTabs[1].classList.add('active');
+    else if (tab === 'learn') navTabs[2].classList.add('active');
+    else if (tab === 'profile') navTabs[3].classList.add('active');
+    
+    renderEmbed();
+}
+
+function renderEmbed() {
+    const screen = document.getElementById('mainScreenEmbed');
+    if (activeTabEmbed === 'home') renderHomeEmbed(screen);
+    else if (activeTabEmbed === 'garden') renderGardenEmbed(screen);
+    else if (activeTabEmbed === 'learn') renderLearnEmbed(screen);
+    else if (activeTabEmbed === 'cherry') renderCherryEmbed(screen);
+    else if (activeTabEmbed === 'profile') renderProfileEmbed(screen);
+}
+
+function renderHomeEmbed(screen) {
+    screen.innerHTML = `
+        <div class="home-header-embed">
+            <div class="home-brand-embed">
+                <span style="font-size:18px">🍒</span>
+                <span class="home-brand-name-embed">Cherry</span>
+            </div>
+            <div class="home-tagline-embed">Romanticize your life</div>
+        </div>
+        <div class="invitation-card-embed">
+            <div class="invitation-label-embed">Today's Invitation</div>
+            <div class="invitation-text-embed">${currentInvitationEmbed}</div>
+            <button class="invitation-cta-embed" onclick="setTabEmbed('cherry')">Cherry-ish →</button>
+        </div>
+        <div class="section-label-embed">Recent Memories</div>
+        <div class="memory-scroll-embed">
+            ${momentsEmbed.slice(0, 4).map(m => `
+                <div class="memory-card-embed" style="background: ${m.color}">
+                    <span class="memory-card-emoji-embed">${m.emoji}</span>
+                    <div class="memory-card-poem-embed">"${m.poem}"</div>
+                    <div class="memory-card-date-embed">${m.date}</div>
+                </div>
+            `).join('')}
+        </div>
+        <div class="section-label-embed" style="color:#C8102E">✦ Morning Check-in</div>
+        <div style="padding:0 16px 10px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#2a1015;font-style:italic">How are you feeling?</div>
+        </div>
+        <div class="mood-vibe-grid-embed">
+            ${moodVibesEmbed.map((v, i) => `
+                <div class="mood-vibe-card-embed ${selectedMoodVibeEmbed === i ? 'selected' : ''}" 
+                     onclick="selectMoodVibeEmbed(${i})">
+                    <div class="mood-vibe-emoji-embed">${v.emoji}</div>
+                    <div class="mood-vibe-label-embed">${v.label}</div>
+                </div>
+            `).join('')}
+        </div>
+        <div style="height:20px"></div>
+    `;
+}
+
+function renderGardenEmbed(screen) {
+    screen.innerHTML = `
+        <div class="home-header-embed">
+            <div class="home-brand-embed">
+                <span style="font-size:18px">🍒</span>
+                <span class="home-brand-name-embed">Cherry</span>
+            </div>
+            <div class="home-tagline-embed">Your Garden</div>
+        </div>
+        <div style="padding:16px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a0408;margin-bottom:4px">Your Garden</div>
+            <div style="font-size:11px;color:#999;margin-bottom:8px">${momentsEmbed.length} romanticized moments</div>
+            <div style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:50px;padding:4px 10px;font-size:10px;font-weight:500;color:#7A3B00">
+                🔥 12 day streak
+            </div>
+        </div>
+        <div style="padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            ${momentsEmbed.map(m => `
+                <div style="border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer">
+                    <div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:32px;background:${m.color}">${m.emoji}</div>
+                    <div style="background:white;padding:10px">
+                        <div style="font-size:11px;font-weight:500;color:#2a1015;margin-bottom:2px">${m.label}</div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:#888">"${m.poem}"</div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+        <div style="height:20px"></div>
+    `;
+}
+
+function renderLearnEmbed(screen) {
+    screen.innerHTML = `
+        <div class="home-header-embed">
+            <div class="home-brand-embed">
+                <span style="font-size:18px">🍒</span>
+                <span class="home-brand-name-embed">Cherry</span>
+            </div>
+            <div class="home-tagline-embed">Learn</div>
+        </div>
+        <div style="padding:16px">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a0408;margin-bottom:4px">Learn</div>
+            <div style="font-size:11px;color:#999">Mini guides for romanticizing life</div>
+        </div>
+        <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
+            <div style="border-radius:14px;background:linear-gradient(135deg,#8B0017,#C8102E);padding:14px;color:white">
+                <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,200,210,.9);margin-bottom:6px">✦ Start Here</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:16px;margin-bottom:4px">Become the Main Character</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.6)">4 lessons · Begins with intention</div>
+            </div>
+            <div style="border-radius:14px;background:#FDE8EC;padding:14px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                    <span style="font-size:24px">🌹</span>
+                    <div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#C8102E">Ways to Romanticize</div>
+                        <div style="font-size:10px;color:#999">Turning ordinary into exquisite</div>
+                    </div>
+                </div>
+            </div>
+            <div style="border-radius:14px;background:#F2E8F8;padding:14px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                    <span style="font-size:24px">🕯️</span>
+                    <div>
+                        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#9B59B6">The Art of Presence</div>
+                        <div style="font-size:10px;color:#999">Being here, fully and softly</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:20px"></div>
+    `;
+}
+
+function renderCherryEmbed(screen) {
+    screen.innerHTML = `
+        <div class="cherry-screen-embed">
+            <div class="camera-viewfinder-embed">
+                <div class="camera-grain-embed"></div>
+                <div class="camera-scene-text-embed">"point your cherry at something beautiful"</div>
+            </div>
+            <div class="filter-strip-embed">
+                <div class="filter-pill-embed active">Golden Hour</div>
+                <div class="filter-pill-embed">Soft Dream</div>
+                <div class="filter-pill-embed">Vintage</div>
+                <div class="filter-pill-embed">Bloom</div>
+            </div>
+            <div class="cherry-capture-zone-embed">
+                <div class="cherry-btn-outer-embed" onclick="handleCaptureEmbed()">
+                    <div class="cherry-btn-inner-embed">🍒</div>
+                </div>
+                <div class="capture-hint-embed">tap to romanticize</div>
+            </div>
+        </div>
+    `;
+}
+
+function renderProfileEmbed(screen) {
+    screen.innerHTML = `
+        <div class="home-header-embed">
+            <div class="home-brand-embed">
+                <span style="font-size:18px">🍒</span>
+                <span class="home-brand-name-embed">Cherry</span>
+            </div>
+            <div class="home-tagline-embed">Profile</div>
+        </div>
+        <div style="padding:20px 16px;text-align:center">
+            <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#8B0017);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 10px">🌸</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#2a1015;margin-bottom:2px">Isabelle R.</div>
+            <div style="font-size:10px;color:#aaa;margin-bottom:16px">romanticizing the everyday</div>
+            <div style="display:flex;gap:8px;margin-bottom:16px">
+                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">${momentsEmbed.length}</div>
+                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Moments</div>
+                </div>
+                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">12</div>
+                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Streak</div>
+                </div>
+                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
+                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">8</div>
+                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Shared</div>
+                </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#C8102E,#8B0017);border-radius:12px;padding:12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(200,16,46,.25)">
+                <span style="font-size:20px">🍒</span>
+                <div style="text-align:left">
+                    <div style="font-size:12px;font-weight:500;color:white">Cherry Premium</div>
+                    <div style="font-size:9px;color:rgba(255,255,255,.6)">All lenses + digest</div>
+                </div>
+                <button style="margin-left:auto;background:rgba(255,255,255,.2);color:white;border:none;border-radius:50px;padding:5px 10px;font-size:9px;font-weight:500;cursor:pointer">Upgrade</button>
+            </div>
+        </div>
+        <div style="height:20px"></div>
+    `;
+}
+
+function selectMoodVibeEmbed(idx) {
+    selectedMoodVibeEmbed = idx;
+    renderEmbed();
+}
+
+function handleCaptureEmbed() {
+    const flash = document.getElementById('flashEmbed');
+    flash.classList.remove('hidden-embed');
+    setTimeout(() => {
+        flash.classList.add('hidden-embed');
+        capturedPoemEmbed = rndEmbed(poemsEmbed);
+        document.getElementById('overlayPoemEmbed').textContent = '"' + capturedPoemEmbed + '"';
+        document.getElementById('captureOverlayEmbed').classList.remove('hidden-embed');
+    }, 500);
+}
+
+function saveToGardenEmbed() {
+    const colors = ["#E8D5C4", "#C8DDD4", "#D4C8E0", "#E8D4C8"];
+    const emojis = ["🌸", "✨", "🍂", "🌙"];
+    momentsEmbed.unshift({
+        id: momentsEmbed.length + 1,
+        color: rndEmbed(colors),
+        emoji: rndEmbed(emojis),
+        label: "This Moment",
+        poem: capturedPoemEmbed,
+        date: "Today",
+        mood: "joyful"
+    });
+    document.getElementById('captureOverlayEmbed').classList.add('hidden-embed');
+    setTabEmbed('garden');
+}
+
+function discardCaptureEmbed() {
+    document.getElementById('captureOverlayEmbed').classList.add('hidden-embed');
+    setTabEmbed('home');
+}
+
+// Initialize
+renderEmbed();
+</script>
 
 </body>
 </html>
