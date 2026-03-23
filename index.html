@@ -1,1666 +1,4259 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Cherry — Romanticize Your Life</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fefaf7;
-            color: #2c2420;
-        }
-
-        :root {
-            --cherry-deep: #b31e3f;
-            --cherry-bright: #d43f5e;
-            --cherry-soft: #fff0ee;
-            --cherry-warm: #fef7f2;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 48px;
-        }
-
-        /* Navigation - FIXED */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 28px 0;
-            border-bottom: 1px solid rgba(179, 30, 63, 0.1);
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-        }
-
-        .logo-sub {
-            font-size: 9px;
-            letter-spacing: 1.5px;
-            font-weight: 500;
-            color: #b88a7a;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #5a4a44;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--cherry-bright);
-        }
-
-        /* FIXED: Explicit white color for app badge, overriding nav-links a */
-        .nav-links a.app-badge,
-        .app-badge {
-            background: var(--cherry-deep);
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s;
-            white-space: nowrap;
-            border: none;
-            cursor: pointer;
-        }
-
-        .app-badge:hover {
-            background: var(--cherry-bright);
-            transform: translateY(-2px);
-            color: white !important;
-        }
-
-        /* Ensure icon is also white */
-        .app-badge i {
-            color: white;
-            font-size: 14px;
-        }
-
-        /* Hero */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            padding: 70px 0 60px;
-        }
-
-        .hero-left h1 {
-            font-size: 48px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--cherry-deep);
-            margin-bottom: 20px;
-        }
-
-        .hero-left p {
-            font-size: 17px;
-            color: #6a5a52;
-            line-height: 1.5;
-            margin-bottom: 32px;
-            max-width: 480px;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* LIVE iPhone Mockup Styles - Scaled down for landing page */
-        .iphone-shell {
-            position: relative;
-            width: 280px;
-            height: 570px;
-            background: #1a0408;
-            border-radius: 40px;
-            flex-shrink: 0;
-            overflow: hidden;
-            box-shadow: 0 0 0 2px #3a1a22, 0 0 0 8px #1a0408, 0 0 0 10px #2a1018,
-                       0 30px 60px rgba(0,0,0,.4), 0 0 40px rgba(200,16,46,.08);
-            transform: scale(0.9);
-        }
-
-        .iphone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 26px;
-            background: #0d0205;
-            border-radius: 0 0 16px 16px;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-
-        .iphone-speaker {
-            width: 40px;
-            height: 4px;
-            background: #1a0810;
-            border-radius: 2px;
-        }
-
-        .iphone-camera-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #1a0810;
-            border: 1px solid #2a1018;
-        }
-
-        .cherry-app-embed {
-            font-family: 'DM Sans', sans-serif;
-            background: #FDF8F0;
-            width: 280px;
-            height: 570px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .screen-embed {
-            flex: 1;
-            overflow-y: auto;
-            padding-bottom: 60px;
-            scrollbar-width: none;
-        }
-
-        .screen-embed::-webkit-scrollbar {
-            display: none;
-        }
-
-        .hidden-embed {
-            display: none !important;
-        }
-
-        /* Scaled Home Header */
-        .home-header-embed {
-            background: linear-gradient(180deg, #8B0017 0%, #C8102E 45%, #E8607A 70%, #F2B8C0 88%, #FDF8F0 100%);
-            padding: 35px 16px 45px;
-            position: relative;
-        }
-
-        .home-header-embed::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            right: 0;
-            height: 24px;
-            background: #FDF8F0;
-            filter: blur(6px);
-            z-index: 0;
-        }
-
-        .home-brand-embed {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-brand-name-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-weight: 400;
-            color: white;
-        }
-
-        .home-tagline-embed {
-            font-size: 8px;
-            color: rgba(255,255,255,.7);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Scaled Invitation Card */
-        .invitation-card-embed {
-            background: #FDF8F0;
-            border-radius: 14px;
-            margin: -18px 14px 0;
-            padding: 14px 12px;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 2px 10px rgba(0,0,0,.08);
-        }
-
-        .invitation-label-embed {
-            font-size: 8px;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: #C8102E;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .invitation-text-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.35;
-            color: #2a1015;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .invitation-cta-embed {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: #C8102E;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 7px 12px;
-            font-size: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .invitation-cta-embed:hover {
-            background: #8B0017;
-            transform: translateY(-1px);
-        }
-
-        /* Scaled Section */
-        .section-label-embed {
-            font-size: 8px;
-            text-transform: uppercase;
-            letter-spacing: .1em;
-            color: #999;
-            font-weight: 500;
-            padding: 14px 16px 6px;
-        }
-
-        .mini-scroll-embed {
-            display: flex;
-            gap: 8px;
-            padding: 0 14px 4px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .mini-scroll-embed::-webkit-scrollbar {
-            display: none;
-        }
-
-        .mini-card-embed {
-            background: white;
-            border-radius: 12px;
-            padding: 10px 12px;
-            min-width: 90px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.06);
-            border: 1px solid rgba(200,120,130,.1);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .mini-card-embed:hover {
-            transform: translateY(-2px);
-        }
-
-        .mini-card-emoji-embed {
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .mini-card-text-embed {
-            font-size: 9px;
-            color: #444;
-            line-height: 1.3;
-        }
-
-        /* Scaled Memory Scroll */
-        .memory-scroll-embed {
-            display: flex;
-            gap: 10px;
-            padding: 0 14px 4px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .memory-scroll-embed::-webkit-scrollbar {
-            display: none;
-        }
-
-        .memory-card-embed {
-            border-radius: 14px;
-            min-width: 120px;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 12px 10px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,.1);
-            transition: transform 0.2s;
-        }
-
-        .memory-card-embed:hover {
-            transform: translateY(-3px);
-        }
-
-        .memory-card-emoji-embed {
-            font-size: 28px;
-            position: absolute;
-            top: 14px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .memory-card-poem-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 10px;
-            font-style: italic;
-            color: rgba(40,10,15,.85);
-            line-height: 1.3;
-            background: rgba(255,255,255,.7);
-            backdrop-filter: blur(4px);
-            padding: 6px 8px;
-            border-radius: 8px;
-        }
-
-        .memory-card-date-embed {
-            font-size: 8px;
-            color: rgba(40,10,15,.5);
-            margin-top: 3px;
-        }
-
-        /* Scaled Mood Grid */
-        .mood-vibe-grid-embed {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            padding: 0 14px;
-        }
-
-        .mood-vibe-card-embed {
-            border-radius: 14px;
-            padding: 12px 10px;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,.06);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-        }
-
-        .mood-vibe-card-embed:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(200,16,46,.15);
-        }
-
-        .mood-vibe-card-embed.selected {
-            background: #C8102E;
-            box-shadow: 0 4px 16px rgba(200,16,46,.3);
-        }
-
-        .mood-vibe-emoji-embed {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        .mood-vibe-label-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
-            font-style: italic;
-            color: #2a1015;
-        }
-
-        .mood-vibe-card-embed.selected .mood-vibe-label-embed {
-            color: white;
-        }
-
-        /* Scaled Bottom Nav */
-        .bottom-nav-embed {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid rgba(0,0,0,.06);
-            display: flex;
-            align-items: center;
-            padding: 8px 14px 14px;
-            z-index: 50;
-        }
-
-        .nav-tab-embed {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            color: #ccc;
-            font-size: 7px;
-            cursor: pointer;
-            transition: color 0.2s;
-            padding: 2px;
-        }
-
-        .nav-tab-embed.active {
-            color: #C8102E;
-        }
-
-        .nav-tab-embed:hover {
-            color: #C8102E;
-        }
-
-        .nav-icon-embed {
-            font-size: 16px;
-        }
-
-        .nav-cherry-embed {
-            flex: 0 0 auto;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #C8102E, #8B0017);
-            box-shadow: 0 2px 12px rgba(200,16,46,.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            cursor: pointer;
-            margin-top: -16px;
-            border: 2px solid white;
-            transition: all 0.2s;
-        }
-
-        .nav-cherry-embed:hover {
-            transform: translateY(-2px) scale(1.05);
-        }
-
-        /* Camera Screen */
-        .cherry-screen-embed {
-            background: #0f0408;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .camera-viewfinder-embed {
-            width: 100%;
-            flex: 1;
-            min-height: 320px;
-            background: linear-gradient(180deg,#1a0510 0%,#2d0d1a 40%,#160308 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .camera-grain-embed {
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-            opacity: .5;
-            pointer-events: none;
-        }
-
-        .camera-scene-text-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            font-style: italic;
-            color: rgba(255,220,210,.35);
-            text-align: center;
-            line-height: 1.4;
-            padding: 0 30px;
-        }
-
-        .filter-strip-embed {
-            display: flex;
-            gap: 8px;
-            padding: 12px 16px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            background: rgba(0,0,0,.4);
-            width: 100%;
-        }
-
-        .filter-strip-embed::-webkit-scrollbar {
-            display: none;
-        }
-
-        .filter-pill-embed {
-            background: rgba(255,255,255,.1);
-            border: 1px solid rgba(255,255,255,.2);
-            border-radius: 50px;
-            padding: 5px 12px;
-            font-size: 10px;
-            color: rgba(255,255,255,.7);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-
-        .filter-pill-embed.active {
-            background: #C8102E;
-            border-color: #C8102E;
-            color: white;
-        }
-
-        .cherry-capture-zone-embed {
-            padding: 20px 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #0f0408;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .cherry-btn-outer-embed {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(200,16,46,.2);
-            border: 2px solid rgba(200,16,46,.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            animation: pulseGlowEmbed 3s infinite;
-        }
-
-        .cherry-btn-outer-embed:hover {
-            transform: scale(1.05);
-            background: rgba(200,16,46,.3);
-        }
-
-        .cherry-btn-inner-embed {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: linear-gradient(145deg,#C8102E,#8B0017);
-            box-shadow: 0 0 16px rgba(200,16,46,.6), 0 4px 12px rgba(0,0,0,.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-        }
-
-        @keyframes pulseGlowEmbed {
-            0%,100% { box-shadow: 0 0 0 0 rgba(200,16,46,.3); }
-            50% { box-shadow: 0 0 0 8px rgba(200,16,46,0); }
-        }
-
-        .capture-hint-embed {
-            font-size: 9px;
-            color: rgba(255,255,255,.35);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-
-        /* Capture Overlay */
-        .capture-overlay-embed {
-            position: absolute;
-            inset: 0;
-            z-index: 100;
-            background: linear-gradient(180deg,rgba(15,4,8,.97) 0%,rgba(30,8,16,.99) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 20px;
-        }
-
-        .overlay-cherry-embed {
-            font-size: 48px;
-            margin-bottom: 18px;
-            animation: floatCherryEmbed 3s ease-in-out infinite;
-        }
-
-        @keyframes floatCherryEmbed {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
-        .overlay-poem-embed {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            font-weight: 300;
-            font-style: italic;
-            color: rgba(255,220,215,.95);
-            text-align: center;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .overlay-divider-embed {
-            width: 30px;
-            height: 1px;
-            background: rgba(200,16,46,.5);
-            margin: 6px auto 14px;
-        }
-
-        .overlay-prompt-embed {
-            font-size: 11px;
-            color: rgba(255,255,255,.5);
-            text-align: center;
-            margin-bottom: 24px;
-            line-height: 1.4;
-        }
-
-        .overlay-actions-embed {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .overlay-save-embed {
-            flex: 1;
-            background: #C8102E;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            font-family: 'DM Sans', sans-serif;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .overlay-save-embed:hover {
-            background: #8B0017;
-        }
-
-        .overlay-discard-embed {
-            flex: 1;
-            background: transparent;
-            color: rgba(255,255,255,.4);
-            border: 1px solid rgba(255,255,255,.15);
-            border-radius: 50px;
-            padding: 12px;
-            font-size: 11px;
-            font-family: 'DM Sans', sans-serif;
-            cursor: pointer;
-        }
-
-        /* Flash */
-        .capturing-flash-embed {
-            position: absolute;
-            inset: 0;
-            background: white;
-            z-index: 999;
-            animation: flashOutEmbed 0.5s ease-out forwards;
-        }
-
-        @keyframes flashOutEmbed {
-            from { opacity: .9; }
-            to { opacity: 0; pointer-events: none; }
-        }
-
-        /* Quote */
-        .quote-section {
-            background: linear-gradient(135deg, var(--cherry-deep), #962e48);
-            border-radius: 36px;
-            padding: 56px 48px;
-            text-align: center;
-            margin: 56px 0;
-        }
-
-        .quote-section blockquote {
-            font-size: 26px;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: white;
-            max-width: 700px;
-            margin: 0 auto 18px;
-        }
-
-        .quote-section cite {
-            color: rgba(255,255,255,0.75);
-            font-size: 15px;
-        }
-
-        /* SINGLE FEATURE SHOWCASE */
-        .feature-showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin: 80px 0;
-            padding: 0 20px;
-        }
-
-        .feature-showcase-image {
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px -15px rgba(179, 30, 63, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .feature-showcase-image:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-showcase-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .feature-showcase-content h2 {
-            font-size: 38px;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .feature-showcase-content p {
-            font-size: 17px;
-            color: #6a5a52;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .feature-badge-large {
-            display: inline-block;
-            background: var(--cherry-soft);
-            color: var(--cherry-deep);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 15px;
-            color: #5a4a44;
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            width: 24px;
-            height: 24px;
-            background: var(--cherry-soft);
-            color: var(--cherry-deep);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* HOW IT WORKS SECTION */
-        .how-it-works {
-            background: var(--cherry-warm);
-            border-radius: 36px;
-            padding: 60px 48px;
-            margin: 56px 0;
-            text-align: center;
-        }
-
-        .how-it-works h2 {
-            font-size: 32px;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-            margin-bottom: 40px;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .step {
-            position: relative;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: var(--cherry-deep);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 auto 16px;
-        }
-
-        .step h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c2420;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: #8a7a72;
-            line-height: 1.5;
-        }
-
-        /* SINGLE GARDEN SHOWCASE */
-        .garden-showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin: 80px 0;
-            padding: 0 20px;
-        }
-
-        .garden-showcase-content h2 {
-            font-size: 38px;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-            margin-bottom: 16px;
-        }
-
-        .garden-showcase-content > p {
-            font-size: 17px;
-            color: #6a5a52;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .garden-stats {
-            display: flex;
-            gap: 32px;
-            margin-bottom: 24px;
-        }
-
-        .garden-stat {
-            text-align: center;
-        }
-
-        .garden-stat-number {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--cherry-deep);
-            display: block;
-        }
-
-        .garden-stat-label {
-            font-size: 13px;
-            color: #8a7a72;
-        }
-
-        .garden-showcase-image {
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px -15px rgba(179, 30, 63, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .garden-showcase-image:hover {
-            transform: translateY(-5px);
-        }
-
-        .garden-showcase-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin: 56px 0;
-        }
-
-        .info-card {
-            background: var(--cherry-warm);
-            border-radius: 28px;
-            padding: 36px;
-        }
-
-        .info-card i {
-            font-size: 40px;
-            color: var(--cherry-deep);
-            margin-bottom: 18px;
-        }
-
-        .info-card h3 {
-            font-size: 24px;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 14px;
-        }
-
-        .stat-group {
-            display: flex;
-            gap: 28px;
-            margin-top: 20px;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--cherry-deep);
-        }
-
-        .tag-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .tag {
-            background: white;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-        }
-
-        /* CTA */
-        .cta-section {
-            text-align: center;
-            padding: 70px;
-            background: linear-gradient(135deg, #fff5ef, #ffeae4);
-            border-radius: 40px;
-            margin: 56px 0;
-        }
-
-        .cta-section h2 {
-            font-size: 42px;
-            font-family: 'Playfair Display', serif;
-            color: var(--cherry-deep);
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--cherry-deep);
-            color: white;
-            padding: 14px 38px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 24px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .download-btn:hover {
-            background: var(--cherry-bright);
-            transform: translateY(-2px);
-        }
-
-        .download-btn i {
-            color: white;
-            font-size: 16px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 48px 0 56px;
-            color: #9a8a82;
-            font-size: 13px;
-            border-top: 1px solid rgba(179, 30, 63, 0.08);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .container {
-                padding: 0 24px;
-            }
-            
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-                gap: 16px;
-            }
-            
-            .nav-links {
-                justify-content: center;
-                gap: 28px;
-            }
-            
-            .app-badge {
-                white-space: nowrap;
-            }
-            
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 50px 0 40px;
-                gap: 35px;
-            }
-            
-            .hero-left p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .iphone-shell {
-                transform: scale(0.8);
-            }
-
-            .feature-showcase,
-            .garden-showcase {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-
-            .feature-showcase-image,
-            .garden-showcase-image {
-                order: -1;
-            }
-
-            .feature-list li {
-                justify-content: center;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .garden-stats {
-                justify-content: center;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .quote-section blockquote {
-                font-size: 20px;
-            }
-            
-            .quote-section {
-                padding: 40px 28px;
-            }
-
-            .how-it-works {
-                padding: 40px 28px;
-            }
-            
-            .cta-section {
-                padding: 48px 28px;
-            }
-            
-            .cta-section h2 {
-                font-size: 32px;
-            }
-        }
-
-        @media (max-width: 550px) {
-            .nav-links {
-                gap: 20px;
-            }
-            
-            .app-badge {
-                padding: 6px 16px;
-                font-size: 12px;
-            }
-            
-            .hero-left h1 {
-                font-size: 34px;
-            }
-
-            .iphone-shell {
-                transform: scale(0.7);
-            }
-
-            .feature-showcase-content h2,
-            .garden-showcase-content h2 {
-                font-size: 28px;
-            }
-        }
-    </style>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cherry  Romanticize Your Life</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+  :root {
+
+    --cherry: #D2042D;
+
+    --cherry-deep: #9B0226;
+
+    --cherry-light: #F4B8C1;
+
+    --blush: #FAE8EC;
+
+    --cream: #FDF8F4;
+
+    --warm-gold: #C8965A;
+
+    --text-dark: #2A1215;
+
+    --text-soft: #7A4B55;
+
+    --text-muted: #B08090;
+
+  }
+
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  html { scroll-behavior: smooth; }
+
+
+
+  body {
+
+    background: var(--cream);
+
+    color: var(--text-dark);
+
+    font-family: 'Quicksand', sans-serif;
+
+    overflow-x: hidden;
+
+    cursor: none;
+
+  }
+
+
+
+  /* Custom cursor */
+
+  .cursor {
+
+    width: 12px; height: 12px;
+
+    background: var(--cherry);
+
+    border-radius: 50%;
+
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transform: translate(-50%, -50%);
+
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+
+    mix-blend-mode: multiply;
+
+  }
+
+  .cursor-ring {
+
+    width: 36px; height: 36px;
+
+    border: 1.5px solid var(--cherry);
+
+    border-radius: 50%;
+
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    transform: translate(-50%, -50%);
+
+    transition: transform 0.2s ease, width 0.3s, height 0.3s;
+
+    opacity: 0.4;
+
+  }
+
+
+
+  /* Petals */
+
+  .petal {
+
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    opacity: 0;
+
+    font-size: 18px;
+
+    animation: petalFall linear forwards;
+
+  }
+
+  @keyframes petalFall {
+
+    0% { transform: translateY(-20px) rotate(0deg) translateX(0); opacity: 0.9; }
+
+    100% { transform: translateY(110vh) rotate(360deg) translateX(60px); opacity: 0; }
+
+  }
+
+
+
+  /* Nav */
+
+  nav {
+
+    position: fixed; top: 0; left: 0; right: 0;
+
+    padding: 24px 48px;
+
+    display: flex; justify-content: space-between; align-items: center;
+
+    z-index: 100;
+
+    backdrop-filter: blur(12px);
+
+    background: rgba(253, 248, 244, 0.85);
+
+    border-bottom: 1px solid rgba(210, 4, 45, 0.08);
+
+  }
+
+  .nav-logo {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 28px;
+
+    color: var(--cherry);
+
+    letter-spacing: -0.5px;
+
+  }
+
+  .nav-logo span { font-style: italic; color: var(--cherry-deep); }
+
+  .nav-links {
+
+    display: flex; gap: 36px; list-style: none;
+
+    margin-left: auto;
+
+    margin-right: 32px;
+
+  }
+
+  .nav-links a {
+
+    text-decoration: none; color: var(--text-soft);
+
+    font-size: 13px; font-weight: 500; letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition: color 0.3s;
+
+  }
+
+  .nav-links a:hover { color: var(--cherry); }
+
+  .nav-links a.nav-active { color: var(--cherry); font-weight: 600; }
+
+  .nav-cta {
+
+    background: var(--cherry);
+
+    color: white !important;
+
+    padding: 10px 24px;
+
+    border-radius: 100px;
+
+    font-size: 12px !important;
+
+    letter-spacing: 2px !important;
+
+    transition: background 0.3s !important, transform 0.2s !important;
+
+  }
+
+  .nav-cta:hover { background: var(--cherry-deep) !important; transform: scale(1.04); }
+
+
+
+  /* Hero */
+
+  .hero {
+
+    min-height: 100vh;
+
+    display: flex; flex-direction: column;
+
+    align-items: center; justify-content: center;
+
+    padding: 120px 72px 80px;
+
+    position: relative;
+
+    overflow: hidden;
+
+  }
+
+  .hero-bg {
+
+    position: absolute; inset: 0;
+
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(210, 4, 45, 0.07) 0%, transparent 70%),
+
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200, 150, 90, 0.08) 0%, transparent 60%);
+
+  }
+
+
+
+  /* Side-by-side row */
+
+  .hero-row {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 80px;
+
+    width: 100%;
+
+    max-width: 1300px;
+
+  }
+
+  .hero-text {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    text-align: left;
+
+  }
+
+
+
+  .hero-eyebrow {
+
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+
+    color: var(--cherry); font-weight: 500;
+
+    margin-bottom: 24px;
+
+    opacity: 0; animation: fadeUp 1s 0.3s forwards;
+
+  }
+
+  .hero-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(72px, 8vw, 140px);
+
+    line-height: 0.92;
+
+    color: var(--text-dark);
+
+    margin-bottom: 8px;
+
+    opacity: 0; animation: fadeUp 1s 0.5s forwards;
+
+  }
+
+  .hero-title em {
+
+    font-style: italic; color: var(--cherry);
+
+    display: block;
+
+  }
+
+  .hero-sub {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(20px, 1.8vw, 26px);
+
+    font-style: italic;
+
+    color: var(--text-soft);
+
+    margin-top: 20px; margin-bottom: 48px;
+
+    max-width: 480px;
+
+    line-height: 1.6;
+
+    opacity: 0; animation: fadeUp 1s 0.7s forwards;
+
+  }
+
+  .hero-cta-group {
+
+    display: flex; gap: 16px; align-items: center;
+
+    flex-wrap: wrap; justify-content: flex-start;
+
+    opacity: 0; animation: fadeUp 1s 0.9s forwards;
+
+  }
+
+  .hero-meet {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(15px, 1.2vw, 18px);
+
+    font-style: italic;
+
+    color: var(--text-soft);
+
+    margin-top: 20px;
+
+    margin-bottom: 40px;
+
+    max-width: 560px;
+
+    line-height: 1.6;
+
+    opacity: 0; animation: fadeUp 1s 0.7s forwards;
+
+  }
+
+  .btn-primary {
+
+    background: var(--cherry);
+
+    color: white;
+
+    border: none;
+
+    padding: 16px 40px;
+
+    border-radius: 100px;
+
+    font-family: 'Quicksand', sans-serif;
+
+    font-size: 14px; font-weight: 600;
+
+    letter-spacing: 2px; text-transform: uppercase;
+
+    cursor: none;
+
+    transition: all 0.3s;
+
+    box-shadow: 0 8px 32px rgba(210, 4, 45, 0.3);
+
+    position: relative; overflow: hidden;
+
+  }
+
+  .btn-primary::before {
+
+    content: '';
+
+    position: absolute; inset: 0;
+
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+
+  }
+
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(210, 4, 45, 0.4); }
+
+
+
+  .nav-store-btns {
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+  }
+
+  .store-btn-hero {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: #111827;
+
+    border: 1.5px solid rgba(255,255,255,0.2);
+
+    border-radius: 10px;
+
+    padding: 8px 16px;
+
+    text-decoration: none;
+
+    color: white;
+
+    transition: background 0.2s, transform 0.2s;
+
+    cursor: none;
+
+  }
+
+  .store-btn-hero:hover { background: #1f2937; transform: translateY(-1px); }
+
+  .store-btn-hero-sub { font-size: 9px; letter-spacing: 0.3px; color: rgba(255,255,255,0.7); line-height: 1; font-family: 'Quicksand', sans-serif; margin-bottom: 1px; }
+
+  .store-btn-hero-main { font-size: 14px; font-weight: 700; color: white; line-height: 1.2; font-family: 'Quicksand', sans-serif; letter-spacing: -0.2px; }
+
+  .btn-ghost {
+
+    background: transparent; border: 1.5px solid var(--cherry-light);
+
+    color: var(--cherry); padding: 16px 40px; border-radius: 100px;
+
+    font-family: 'Quicksand', sans-serif; font-size: 14px; font-weight: 500;
+
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: none;
+
+    transition: all 0.3s;
+
+  }
+
+  .btn-ghost:hover { border-color: var(--cherry); background: rgba(210,4,45,0.05); }
+
+
+
+  /* Hero visual  right column */
+
+  .hero-visual {
+
+    position: relative;
+
+    opacity: 0; animation: fadeUp 1s 1.1s forwards;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+  }
+
+
+
+  /* Float rings */
+
+  .float-rings-wrap {
+
+    position: absolute;
+
+    top: 50%; left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    width: 0; height: 0;
+
+  }
+
+  .float-ring {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(210,4,45,0.15);
+
+    animation: breathe 4s ease-in-out infinite;
+
+  }
+
+  .float-ring:nth-child(1) { width: 460px; height: 460px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+
+  .float-ring:nth-child(2) { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0.8s; border-color: rgba(200,150,90,0.1); }
+
+  .float-ring:nth-child(3) { width: 750px; height: 750px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1.6s; border-color: rgba(210,4,45,0.05); }
+
+  @keyframes breathe {
+
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+
+    50% { transform: translate(-50%,-50%) scale(1.04); opacity: 0.4; }
+
+  }
+
+
+
+  /* iPhone shell */
+
+  .iphone-shell-hero {
+
+    position: relative;
+
+    width: 393px;
+
+    height: 852px;
+
+    background: #1a0408;
+
+    border-radius: 54px;
+
+    overflow: hidden;
+
+    box-shadow:
+
+      0 0 0 2px #3a1a22,
+
+      0 0 0 10px #1a0408,
+
+      0 0 0 12px #2a1018,
+
+      0 60px 120px rgba(42,18,21,0.5),
+
+      0 0 60px rgba(200,16,46,.08);
+
+    z-index: 2;
+
+  }
+
+  .iphone-notch-hero {
+
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+
+    width: 126px; height: 34px;
+
+    background: #0d0205;
+
+    border-radius: 0 0 20px 20px;
+
+    z-index: 9999;
+
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+
+  }
+
+  .iphone-camera-dot-hero { width: 10px; height: 10px; border-radius: 50%; background: #1a0810; border: 1.5px solid #2a1018; }
+
+  .iphone-speaker-hero { width: 52px; height: 5px; background: #1a0810; border-radius: 3px; }
+
+  .iphone-side-btn-hero { position: absolute; background: #2a1018; border-radius: 2px; }
+
+  .iphone-vol-up-hero { top: 140px; left: -3px; width: 3px; height: 36px; }
+
+  .iphone-vol-dn-hero { top: 186px; left: -3px; width: 3px; height: 36px; }
+
+  .iphone-power-hero { top: 168px; right: -3px; width: 3px; height: 68px; }
+
+  .iphone-home-bar-hero {
+
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+
+    width: 134px; height: 5px;
+
+    background: rgba(255,255,255,.18);
+
+    border-radius: 3px; z-index: 9999; pointer-events: none;
+
+  }
+
+
+
+  @keyframes fadeUp {
+
+    from { opacity: 0; transform: translateY(30px); }
+
+    to { opacity: 1; transform: translateY(0); }
+
+  }
+
+
+
+  /* Features */
+
+  .section {
+
+    padding: 120px 48px;
+
+    max-width: 1200px; margin: 0 auto;
+
+  }
+
+  .section-label {
+
+    font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+
+    color: var(--cherry); font-weight: 600; margin-bottom: 16px;
+
+  }
+
+  .section-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(36px, 5vw, 60px);
+
+    line-height: 1.1;
+
+    color: var(--text-dark);
+
+    max-width: 600px;
+
+    margin-bottom: 60px;
+
+  }
+
+  .section-title em { font-style: italic; color: var(--cherry); }
+
+
+
+  .features-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 24px;
+
+  }
+
+  .feature-card {
+
+    background: white;
+
+    border-radius: 28px;
+
+    padding: 40px 36px;
+
+    border: 1px solid rgba(210,4,45,0.06);
+
+    position: relative; overflow: hidden;
+
+    transition: all 0.4s ease;
+
+    cursor: none;
+
+  }
+
+  .feature-card::before {
+
+    content: '';
+
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+
+    background: linear-gradient(90deg, var(--cherry), var(--warm-gold));
+
+    transform: scaleX(0); transform-origin: left;
+
+    transition: transform 0.4s ease;
+
+  }
+
+  .feature-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(210,4,45,0.12); }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+
+    font-size: 36px; margin-bottom: 20px;
+
+    display: block;
+
+    filter: saturate(1.2);
+
+  }
+
+  .feature-name {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 24px; color: var(--text-dark);
+
+    margin-bottom: 12px;
+
+  }
+
+  .feature-desc {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 17px; font-style: italic;
+
+    color: var(--text-soft); line-height: 1.7;
+
+  }
+
+
+
+  /* Quote section */
+
+  .quote-section {
+
+    background: linear-gradient(135deg, var(--cherry) 0%, var(--cherry-deep) 100%);
+
+    padding: 120px 48px;
+
+    text-align: center;
+
+    position: relative; overflow: hidden;
+
+  }
+
+  .quote-section::before {
+
+    content: '🍒';
+
+    position: absolute; font-size: 300px;
+
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+
+    opacity: 0.04; pointer-events: none;
+
+    filter: grayscale(1) invert(1);
+
+  }
+
+  .quote-text {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: clamp(28px, 5vw, 52px);
+
+    font-style: italic; font-weight: 300;
+
+    color: white;
+
+    max-width: 800px; margin: 0 auto;
+
+    line-height: 1.5;
+
+    position: relative;
+
+  }
+
+  .quote-source {
+
+    margin-top: 28px;
+
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: rgba(255,255,255,0.5);
+
+  }
+
+
+
+  /* Prompts ticker */
+
+  .prompts-section { padding: 28px 0; overflow: hidden; background: var(--cherry); }
+
+  .ticker-row {
+
+    display: flex; gap: 32px;
+
+    animation: ticker 30s linear infinite;
+
+    width: max-content;
+
+    margin-bottom: 0;
+
+  }
+
+  @keyframes ticker {
+
+    from { transform: translateX(0); }
+
+    to { transform: translateX(-50%); }
+
+  }
+
+  .ticker-item {
+
+    background: var(--cream);
+
+    border: none;
+
+    border-radius: 100px;
+
+    padding: 12px 28px;
+
+    white-space: nowrap;
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 16px; font-style: italic;
+
+    color: var(--cherry);
+
+    display: flex; align-items: center; gap: 10px;
+
+    transition: all 0.3s;
+
+  }
+
+  .ticker-item:hover {
+
+    background: white;
+
+    transform: scale(1.05);
+
+    cursor: none;
+
+  }
+
+
+
+  /* Pricing */
+
+  .pricing-section { padding: 120px 48px; background: var(--blush); }
+
+  .pricing-grid {
+
+    max-width: 900px; margin: 0 auto;
+
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+
+    margin-top: 60px;
+
+  }
+
+  .pricing-card {
+
+    background: white;
+
+    border-radius: 28px; padding: 48px 40px;
+
+    border: 1px solid rgba(210,4,45,0.1);
+
+    transition: all 0.4s;
+
+    position: relative; overflow: hidden;
+
+  }
+
+  .pricing-card.featured {
+
+    background: linear-gradient(145deg, var(--cherry) 0%, var(--cherry-deep) 100%);
+
+    border-color: transparent;
+
+    box-shadow: 0 40px 80px rgba(210,4,45,0.35);
+
+    transform: scale(1.04);
+
+  }
+
+  .pricing-badge {
+
+    position: absolute; top: 24px; right: 24px;
+
+    background: var(--warm-gold); color: white;
+
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+
+    padding: 6px 16px; border-radius: 100px;
+
+  }
+
+  .plan-name {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 28px;
+
+    color: var(--text-dark);
+
+    margin-bottom: 8px;
+
+  }
+
+  .pricing-card.featured .plan-name { color: rgba(255,255,255,0.9); }
+
+  .plan-price {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 52px; line-height: 1;
+
+    color: var(--cherry); margin: 20px 0;
+
+  }
+
+  .pricing-card.featured .plan-price { color: white; }
+
+  .plan-price span { font-size: 20px; vertical-align: super; font-family: 'Quicksand', sans-serif; }
+
+  .plan-period { font-size: 13px; color: var(--text-muted); margin-left: 4px; font-family: 'Quicksand', sans-serif; }
+
+  .pricing-card.featured .plan-period { color: rgba(255,255,255,0.5); }
+
+  .plan-features { list-style: none; margin: 28px 0; }
+
+  .plan-features li {
+
+    padding: 8px 0; font-size: 15px;
+
+    color: var(--text-soft); display: flex; gap: 12px;
+
+    border-bottom: 1px solid rgba(210,4,45,0.06);
+
+  }
+
+  .pricing-card.featured .plan-features li { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.1); }
+
+  .plan-features li::before { content: '🌸'; font-size: 14px; }
+
+  .plan-btn {
+
+    width: 100%; padding: 16px;
+
+    border-radius: 100px; border: none;
+
+    font-family: 'Quicksand', sans-serif;
+
+    font-size: 14px; font-weight: 700;
+
+    letter-spacing: 2px; text-transform: uppercase;
+
+    cursor: none; transition: all 0.3s;
+
+    background: var(--cherry); color: white;
+
+  }
+
+  .plan-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(210,4,45,0.3); }
+
+  .pricing-card.featured .plan-btn {
+
+    background: white; color: var(--cherry);
+
+  }
+
+  .pricing-card.featured .plan-btn:hover { background: var(--cream); }
+
+
+
+  /* Ritual section */
+
+  .ritual-section {
+
+    padding: 120px 48px;
+
+    max-width: 1200px; margin: 0 auto;
+
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+
+    align-items: center;
+
+  }
+
+  .ritual-visual {
+
+    position: relative; height: 560px;
+
+  }
+
+  .ritual-card {
+
+    position: absolute;
+
+    background: white; border-radius: 24px;
+
+    padding: 28px 32px;
+
+    box-shadow: 0 20px 60px rgba(42,18,21,0.1);
+
+    border: 1px solid rgba(210,4,45,0.08);
+
+  }
+
+  .ritual-card:nth-child(1) { top: 0; left: 0; right: 40px; }
+
+  .ritual-card:nth-child(2) { top: 180px; left: 40px; right: 0; background: var(--cherry); color: white; }
+
+  .ritual-card:nth-child(3) { bottom: 0; left: 0; right: 60px; }
+
+  .ritual-card-label {
+
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: var(--cherry); margin-bottom: 12px;
+
+  }
+
+  .ritual-card:nth-child(2) .ritual-card-label { color: rgba(255,255,255,0.6); }
+
+  .ritual-card-text {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px; font-style: italic; line-height: 1.6;
+
+    color: var(--text-dark);
+
+  }
+
+  .ritual-card:nth-child(2) .ritual-card-text { color: white; }
+
+
+
+  /* Floating blossoms */
+
+  .blossom-float {
+
+    position: absolute;
+
+    animation: float 6s ease-in-out infinite;
+
+    font-size: 28px;
+
+  }
+
+  .blossom-float:nth-child(4) { bottom: 100px; right: 0; animation-delay: 1s; }
+
+  .blossom-float:nth-child(5) { top: 100px; right: 20px; animation-delay: 3s; font-size: 20px; }
+
+  @keyframes float {
+
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+
+    50% { transform: translateY(-20px) rotate(10deg); }
+
+  }
+
+
+
+  /* CTA */
+
+  .cta-section {
+
+    padding: 160px 48px;
+
+    text-align: center;
+
+    position: relative; overflow: hidden;
+
+    background: var(--cream);
+
+  }
+
+  .cta-bg {
+
+    position: absolute; inset: 0;
+
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(210,4,45,0.06) 0%, transparent 70%);
+
+  }
+
+  .cta-flower {
+
+    position: absolute;
+
+    font-size: 420px;
+
+    top: 50%; left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0.07;
+
+    pointer-events: none;
+
+    line-height: 1;
+
+    filter: saturate(0.4);
+
+  }
+
+  .cta-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(44px, 7vw, 88px);
+
+    line-height: 1.0; position: relative;
+
+    color: var(--text-dark);
+
+    margin-bottom: 28px;
+
+  }
+
+  .cta-title em { font-style: italic; color: var(--cherry); display: block; }
+
+  .cta-sub {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 22px; font-style: italic;
+
+    color: var(--text-soft); max-width: 480px;
+
+    margin: 0 auto 48px;
+
+    line-height: 1.7;
+
+  }
+
+
+
+  /* Footer */
+
+  footer {
+
+    background: var(--text-dark);
+
+    padding: 64px 72px 32px;
+
+  }
+
+  .footer-main {
+
+    display: flex;
+
+    gap: 80px;
+
+    align-items: flex-start;
+
+    padding-bottom: 48px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  }
+
+  .footer-brand-col {
+
+    flex: 1.5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+  }
+
+  .footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 32px;
+
+    font-style: italic;
+
+  }
+
+  .footer-logo-text { color: white; }
+
+  .footer-logo-dot { color: var(--cherry); }
+
+  .footer-tagline {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 15px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.4);
+
+    margin-bottom: 8px;
+
+  }
+
+  .footer-store-btns {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+  }
+
+  .store-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background: #111;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 10px;
+
+    padding: 10px 18px;
+
+    text-decoration: none;
+
+    color: white;
+
+    transition: background 0.2s, border-color 0.2s;
+
+    cursor: none;
+
+  }
+
+  .store-btn:hover { background: #222; border-color: rgba(255,255,255,0.3); }
+
+  .store-btn-sub { font-size: 9px; letter-spacing: 0.5px; color: rgba(255,255,255,0.6); line-height: 1; }
+
+  .store-btn-main { font-size: 14px; font-weight: 600; color: white; line-height: 1.4; }
+
+
+
+  .footer-links-col {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+  }
+
+  .footer-col-heading {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    color: white;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 4px;
+
+  }
+
+  .footer-link {
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,0.5);
+
+    text-decoration: none;
+
+    transition: color 0.2s;
+
+    cursor: none;
+
+  }
+
+  .footer-link:hover { color: rgba(255,255,255,0.9); }
+
+
+
+  .footer-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-top: 28px;
+
+  }
+
+  .footer-copy {
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,0.25);
+
+    letter-spacing: 0.3px;
+
+  }
+
+  .footer-socials {
+
+    display: flex;
+
+    gap: 16px;
+
+    align-items: center;
+
+  }
+
+  .social-icon {
+
+    color: rgba(255,255,255,0.4);
+
+    text-decoration: none;
+
+    transition: color 0.2s;
+
+    display: flex;
+
+    align-items: center;
+
+    cursor: none;
+
+  }
+
+  .social-icon:hover { color: white; }
+
+
+
+  @media (max-width: 768px) {
+
+    footer { padding: 48px 24px 28px; }
+
+    .footer-main { flex-direction: column; gap: 40px; }
+
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+  }
+
+
+
+  /* Today's Energy section */
+
+  .energy-section {
+
+    padding: 100px 72px;
+
+    background: var(--blush);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+  .energy-top {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: flex-end;
+
+    margin-bottom: 52px;
+
+    width: 100%;
+
+    max-width: 900px;
+
+  }
+
+  .energy-eyebrow {
+
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: var(--cherry); font-weight: 500;
+
+    display: flex; align-items: center; gap: 10px;
+
+    margin-bottom: 20px;
+
+  }
+
+  .energy-eyebrow::before {
+
+    content: '';
+
+    display: inline-block;
+
+    width: 32px; height: 1.5px;
+
+    background: var(--cherry);
+
+  }
+
+  .energy-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(36px, 4.5vw, 60px);
+
+    line-height: 1.05;
+
+    color: var(--text-dark);
+
+  }
+
+  .energy-title em {
+
+    font-style: italic;
+
+    color: var(--cherry);
+
+    display: block;
+
+  }
+
+  .energy-desc {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 19px; font-style: italic;
+
+    color: var(--text-soft); line-height: 1.75;
+
+  }
+
+
+
+  .energy-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+
+    width: 100%;
+
+    max-width: 900px;
+
+  }
+
+  .energy-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 28px 16px 22px;
+
+    display: flex; flex-direction: column;
+
+    align-items: center; gap: 12px;
+
+    cursor: none;
+
+    transition: all 0.3s ease;
+
+    border: 2px solid transparent;
+
+  }
+
+  .energy-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 24px rgba(210,4,45,0.1);
+
+  }
+
+  .energy-card.active {
+
+    background: var(--cherry-deep);
+
+    border-color: var(--cherry-deep);
+
+  }
+
+  .energy-emoji { font-size: 32px; }
+
+  .energy-label {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px; font-style: italic;
+
+    color: var(--text-soft);
+
+    text-align: center;
+
+  }
+
+  .energy-card.active .energy-label { color: rgba(255,255,255,0.9); }
+
+
+
+  .energy-result {
+
+    background: var(--text-dark);
+
+    border-radius: 24px;
+
+    padding: 40px 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 48px;
+
+    width: 100%;
+
+    max-width: 900px;
+
+  }
+
+  .energy-result-eyebrow {
+
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: var(--cherry-light); font-weight: 500;
+
+    margin-bottom: 10px;
+
+  }
+
+  .energy-result-title {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 36px; font-style: italic; font-weight: 300;
+
+    color: white; margin-bottom: 0;
+
+  }
+
+  .energy-result-desc { display: none; }
+
+  .energy-result-divider {
+
+    width: 1px; height: 60px;
+
+    background: rgba(210,4,45,0.4);
+
+    flex-shrink: 0;
+
+  }
+
+  .energy-result-prompt-label {
+
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: rgba(255,255,255,0.35); font-weight: 500;
+
+    margin-bottom: 10px;
+
+  }
+
+  .energy-result-prompt {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 22px; font-style: italic; font-weight: 300;
+
+    color: white; line-height: 1.5;
+
+  }
+
+
+
+  @media (max-width: 768px) {
+
+    .energy-section { padding: 80px 24px; }
+
+    .energy-top { grid-template-columns: 1fr; gap: 24px; }
+
+    .energy-cards { grid-template-columns: 1fr 1fr; }
+
+    .energy-result { grid-template-columns: 1fr; padding: 32px 24px; }
+
+    .energy-result-divider { width: 100%; height: 1px; min-height: unset; }
+
+  }
+
+
+
+  /* Cal AI style features */
+
+  .features-cal {
+
+    padding: 100px 72px;
+
+    background: var(--cream);
+
+  }
+
+  .features-cal-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(36px, 4vw, 56px);
+
+    color: var(--text-dark);
+
+    text-align: center;
+
+    margin-bottom: 72px;
+
+  }
+
+  .features-cal-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+  }
+
+  .features-cal-phone {
+
+    display: flex;
+
+    justify-content: center;
+
+  }
+
+  .iphone-shell-feat {
+
+    position: relative;
+
+    width: 300px;
+
+    background: #1a0408;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+
+    box-shadow:
+
+      0 0 0 2px #3a1a22,
+
+      0 0 0 10px #1a0408,
+
+      0 0 0 12px #2a1018,
+
+      0 40px 80px rgba(42,18,21,0.45);
+
+  }
+
+  .iphone-notch-feat {
+
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+
+    width: 126px; height: 34px;
+
+    background: #0d0205;
+
+    border-radius: 0 0 20px 20px;
+
+    z-index: 99;
+
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+
+  }
+
+  .feat-phone-screen {
+
+    background: #FDF8F0;
+
+    min-height: 580px;
+
+    overflow: hidden;
+
+  }
+
+  .features-cal-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+  }
+
+  .feat-item {
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid rgba(210,4,45,0.08);
+
+  }
+
+  .feat-item:first-child { padding-top: 0; }
+
+  .feat-item:last-child { border-bottom: none; }
+
+  .feat-item-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 20px;
+
+    color: var(--text-dark);
+
+    margin-bottom: 10px;
+
+    line-height: 1.3;
+
+  }
+
+  .feat-item-desc {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 17px;
+
+    font-style: italic;
+
+    color: var(--text-soft);
+
+    line-height: 1.7;
+
+  }
+
+  @media (max-width: 768px) {
+
+    .features-cal { padding: 80px 24px; }
+
+    .features-cal-row { grid-template-columns: 1fr; gap: 48px; }
+
+    .iphone-shell-feat { width: 260px; }
+
+  }
+
+
+
+  /* Community section */
+
+  .community-section {
+
+    padding: 100px 72px;
+
+    background: var(--cream);
+
+  }
+
+  .community-top {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+
+    margin-bottom: 60px;
+
+  }
+
+  .community-eyebrow {
+
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+
+    color: var(--cherry); font-weight: 500;
+
+    display: flex; align-items: center; gap: 10px;
+
+    margin-bottom: 16px;
+
+  }
+
+  .community-eyebrow::before {
+
+    content: '';
+
+    display: inline-block;
+
+    width: 28px; height: 1.5px;
+
+    background: var(--cherry);
+
+  }
+
+  .community-title {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(36px, 4vw, 56px);
+
+    line-height: 1.05;
+
+    color: var(--text-dark);
+
+  }
+
+  .community-title em { font-style: italic; color: var(--cherry); display: block; }
+
+  .community-desc {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 20px; font-style: italic;
+
+    color: var(--text-soft); line-height: 1.75;
+
+  }
+
+  .community-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+  }
+
+  .community-card {
+
+    background: white;
+
+    border-radius: 24px;
+
+    padding: 36px 32px;
+
+    border: 1px solid rgba(210,4,45,0.06);
+
+    position: relative;
+
+    transition: transform 0.3s, box-shadow 0.3s;
+
+  }
+
+  .community-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(210,4,45,0.1); }
+
+  .community-card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 28px;
+
+  }
+
+  .community-emoji { font-size: 32px; }
+
+  .community-num {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 48px;
+
+    color: rgba(210,4,45,0.1);
+
+    line-height: 1;
+
+    font-style: italic;
+
+  }
+
+  .community-card-title {
+
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 26px; font-style: italic;
+
+    color: var(--text-dark);
+
+    margin-bottom: 12px;
+
+  }
+
+  .community-card-desc {
+
+    font-size: 14px;
+
+    color: var(--text-soft);
+
+    line-height: 1.7;
+
+    margin-bottom: 24px;
+
+  }
+
+  .community-card-tag {
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--cherry);
+
+    font-weight: 600;
+
+  }
+
+  @media (max-width: 768px) {
+
+    .community-section { padding: 80px 24px; }
+
+    .community-top { grid-template-columns: 1fr; gap: 24px; }
+
+    .community-cards { grid-template-columns: 1fr; }
+
+  }
+
+
+
+  /* Scroll reveal */
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+
+
+  /* Mobile */
+
+  @media (max-width: 768px) {
+
+    nav { padding: 20px 24px; }
+
+    .nav-links { display: none; }
+
+    .section, .cta-section { padding: 80px 24px; }
+
+    .pricing-grid { grid-template-columns: 1fr; }
+
+    .pricing-card.featured { transform: scale(1); }
+
+    .ritual-section { grid-template-columns: 1fr; }
+
+    .ritual-visual { height: 400px; }
+
+    .quote-section { padding: 80px 24px; }
+
+    .hero { padding: 120px 24px 80px; }
+
+    .hero-row { flex-direction: column; align-items: center; gap: 48px; }
+
+    .hero-text { align-items: center; text-align: center; }
+
+    .hero-cta-group { justify-content: center; }
+
+    .iphone-shell-hero { transform: scale(0.75); transform-origin: top center; margin-bottom: -210px; }
+
+  }
+
+
+
+  /* ── APP STYLES (scoped inside #cherryAppRoot) ───────────────── */
+
+  #cherryAppRoot {
+
+    font-family: 'DM Sans', 'Quicksand', sans-serif;
+
+    background: #FDF8F0;
+
+    width: 393px; height: 852px;
+
+    position: relative; overflow: hidden;
+
+    display: flex; flex-direction: column;
+
+  }
+
+  #cherryAppRoot .app-screen { flex: 1; overflow-y: auto; padding-bottom: 90px; scrollbar-width: none; }
+
+  #cherryAppRoot .app-screen::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .app-hidden { display: none !important; }
+
+  #cherryAppRoot .app-serif { font-family: 'Cormorant Garamond', serif; }
+
+
+
+  #cherryAppRoot .home-header { background: linear-gradient(180deg,#8B0017 0%,#C8102E 45%,#E8607A 70%,#F2B8C0 88%,#FDF8F0 100%); padding: 52px 24px 72px; position: relative; overflow: visible; }
+
+  #cherryAppRoot .home-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 20%,rgba(255,200,180,.18) 0%,transparent 60%); }
+
+  #cherryAppRoot .home-header::after { content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 48px; background: #FDF8F0; filter: blur(12px); z-index: 0; }
+
+  #cherryAppRoot .home-header-row { display: flex; align-items: flex-start; justify-content: space-between; position: relative; z-index: 1; }
+
+  #cherryAppRoot .home-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+  #cherryAppRoot .home-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: white; letter-spacing: .02em; }
+
+  #cherryAppRoot .home-tagline { font-size: 12px; color: rgba(255,255,255,.7); letter-spacing: .12em; text-transform: uppercase; font-weight: 300; }
+
+  #cherryAppRoot .app-settings-btn { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; transition: all .2s; flex-shrink: 0; margin-top: 4px; }
+
+  #cherryAppRoot .app-settings-btn:hover { background: rgba(255,255,255,.25); }
+
+
+
+  #cherryAppRoot .invitation-card { background: #FDF8F0; border-radius: 20px; margin: -32px 20px 0; padding: 22px 20px; position: relative; z-index: 1; }
+
+  #cherryAppRoot .invitation-label { font-size: 10px; text-transform: uppercase; letter-spacing: .15em; color: #C8102E; font-weight: 500; margin-bottom: 10px; }
+
+  #cherryAppRoot .invitation-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; line-height: 1.4; color: #2a1015; margin-bottom: 16px; }
+
+  #cherryAppRoot .invitation-cta { display: inline-flex; align-items: center; gap: 7px; background: #C8102E; color: white; border: none; border-radius: 50px; padding: 13px 26px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all .2s; }
+
+  #cherryAppRoot .invitation-cta:hover { background: #8B0017; transform: translateY(-1px); }
+
+
+
+  #cherryAppRoot .app-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: .15em; color: #999; font-weight: 500; padding: 20px 22px 10px; }
+
+  #cherryAppRoot .mini-scroll { display: flex; gap: 10px; padding: 0 20px 4px; overflow-x: auto; scrollbar-width: none; }
+
+  #cherryAppRoot .mini-scroll::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .mini-card { background: white; border-radius: 16px; padding: 14px 16px; min-width: 130px; box-shadow: 0 2px 12px rgba(0,0,0,.06); cursor: pointer; transition: transform .2s; border: 1.5px solid rgba(200,120,130,.12); }
+
+  #cherryAppRoot .mini-card:hover { transform: translateY(-2px); }
+
+  #cherryAppRoot .mini-card-emoji { font-size: 20px; margin-bottom: 8px; }
+
+  #cherryAppRoot .mini-card-text { font-size: 12px; color: #444; line-height: 1.4; font-weight: 400; }
+
+
+
+  #cherryAppRoot .garden-header { background: #FDF8F0; padding: 16px 22px; border-bottom: 1px solid rgba(0,0,0,.04); }
+
+  #cherryAppRoot .garden-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: #1a0408; margin-bottom: 4px; }
+
+  #cherryAppRoot .garden-sub { font-size: 12px; color: #999; }
+
+  #cherryAppRoot .streak-badge { display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg,#FFD700,#FFA500); border-radius: 50px; padding: 5px 12px; font-size: 12px; font-weight: 500; color: #7A3B00; margin-top: 10px; }
+
+  #cherryAppRoot .mood-filter { display: flex; gap: 8px; padding: 14px 20px; overflow-x: auto; scrollbar-width: none; background: white; border-bottom: 1px solid rgba(0,0,0,.05); }
+
+  #cherryAppRoot .mood-filter::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .app-mood-chip { background: #F9E4E8; border: 1.5px solid transparent; border-radius: 50px; padding: 6px 14px; font-size: 12px; color: #666; cursor: pointer; white-space: nowrap; transition: all .2s; }
+
+  #cherryAppRoot .app-mood-chip.active { background: #C8102E; color: white; border-color: #C8102E; }
+
+  #cherryAppRoot .progress-bar-wrap { background: white; margin: 14px 16px 0; border-radius: 16px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+
+  #cherryAppRoot .progress-label { font-size: 11px; color: #C8102E; text-transform: uppercase; letter-spacing: .1em; font-weight: 500; margin-bottom: 8px; }
+
+  #cherryAppRoot .progress-bar-bg { background: #F9E4E8; border-radius: 50px; height: 8px; overflow: hidden; }
+
+  #cherryAppRoot .progress-bar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg,#C8102E,#E8304A); transition: width .8s cubic-bezier(.4,0,.2,1); }
+
+  #cherryAppRoot .progress-count { font-size: 11px; color: #aaa; margin-top: 6px; }
+
+  #cherryAppRoot .garden-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+
+  #cherryAppRoot .garden-item { border-radius: 18px; overflow: hidden; cursor: pointer; transition: transform .2s; box-shadow: 0 3px 16px rgba(0,0,0,.09); }
+
+  #cherryAppRoot .garden-item:hover { transform: translateY(-3px); }
+
+  #cherryAppRoot .garden-item-top { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 42px; }
+
+  #cherryAppRoot .garden-item-bottom { background: white; padding: 12px; }
+
+  #cherryAppRoot .garden-item-label { font-size: 12px; font-weight: 500; color: #2a1015; margin-bottom: 4px; }
+
+  #cherryAppRoot .garden-item-poem { font-family: 'Cormorant Garamond', serif; font-size: 12px; font-style: italic; color: #888; line-height: 1.35; }
+
+  #cherryAppRoot .garden-item-date { font-size: 10px; color: #bbb; margin-top: 5px; }
+
+
+
+  #cherryAppRoot .learn-header { background: linear-gradient(180deg,#8B0017 0%,#C8102E 45%,#E8607A 70%,#F2B8C0 88%,#FDF8F0 100%); padding: 52px 24px 72px; position: relative; overflow: visible; }
+
+  #cherryAppRoot .learn-header::after { content: ''; position: absolute; bottom: -24px; left: 0; right: 0; height: 48px; background: #FDF8F0; filter: blur(12px); z-index: 0; }
+
+  #cherryAppRoot .learn-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: white; margin-bottom: 4px; }
+
+  #cherryAppRoot .learn-sub { font-size: 12px; color: rgba(255,255,255,.75); line-height: 1.5; }
+
+  #cherryAppRoot .learn-featured { margin: 16px 16px 0; border-radius: 20px; background: linear-gradient(135deg,#8B0017,#C8102E); padding: 20px; cursor: pointer; transition: transform .2s; border: 1px solid rgba(255,255,255,.15); position: relative; z-index: 1; }
+
+  #cherryAppRoot .learn-featured:hover { transform: translateY(-2px); }
+
+  #cherryAppRoot .learn-featured-label { font-size: 10px; text-transform: uppercase; letter-spacing: .15em; color: rgba(255,200,210,.9); font-weight: 500; margin-bottom: 8px; }
+
+  #cherryAppRoot .learn-featured-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: white; margin-bottom: 6px; line-height: 1.3; }
+
+  #cherryAppRoot .learn-featured-sub { font-size: 12px; color: rgba(255,255,255,.6); }
+
+  #cherryAppRoot .learn-cat-grid { display: flex; flex-direction: column; gap: 12px; padding: 16px; }
+
+  #cherryAppRoot .learn-cat-card { border-radius: 18px; overflow: hidden; cursor: pointer; transition: transform .2s; box-shadow: 0 3px 16px rgba(0,0,0,.08); }
+
+  #cherryAppRoot .learn-cat-card:hover { transform: translateY(-2px); }
+
+  #cherryAppRoot .learn-cat-top { padding: 20px 18px 14px; display: flex; align-items: flex-start; gap: 14px; }
+
+  #cherryAppRoot .learn-cat-emoji { font-size: 32px; flex-shrink: 0; }
+
+  #cherryAppRoot .learn-cat-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; margin-bottom: 3px; font-weight: 400; }
+
+  #cherryAppRoot .learn-cat-tagline { font-size: 12px; opacity: .7; line-height: 1.4; }
+
+  #cherryAppRoot .learn-cat-lessons { display: flex; gap: 8px; padding: 0 18px 16px; flex-wrap: wrap; }
+
+  #cherryAppRoot .learn-cat-pill { border-radius: 50px; padding: 4px 10px; font-size: 11px; font-weight: 500; }
+
+
+
+  #cherryAppRoot .cherry-screen { background: #0f0408; height: 100%; display: flex; flex-direction: column; align-items: center; }
+
+  #cherryAppRoot .camera-viewfinder { width: 100%; flex: 1; min-height: 480px; background: linear-gradient(180deg,#1a0510 0%,#2d0d1a 40%,#160308 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+
+  #cherryAppRoot .camera-grain { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"); opacity: .5; pointer-events: none; }
+
+  #cherryAppRoot .camera-scene-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: rgba(255,220,210,.35); text-align: center; line-height: 1.5; padding: 0 40px; }
+
+  #cherryAppRoot .filter-strip { display: flex; gap: 10px; padding: 14px 20px; overflow-x: auto; scrollbar-width: none; background: rgba(0,0,0,.4); width: 100%; }
+
+  #cherryAppRoot .filter-strip::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .filter-pill { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 50px; padding: 6px 14px; font-size: 12px; color: rgba(255,255,255,.7); cursor: pointer; white-space: nowrap; transition: all .2s; }
+
+  #cherryAppRoot .filter-pill.active { background: #C8102E; border-color: #C8102E; color: white; }
+
+  #cherryAppRoot .cherry-capture-zone { padding: 28px 24px; display: flex; flex-direction: column; align-items: center; background: #0f0408; gap: 14px; width: 100%; }
+
+  #cherryAppRoot .cherry-btn-outer { width: 90px; height: 90px; border-radius: 50%; background: rgba(200,16,46,.2); border: 2px solid rgba(200,16,46,.5); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; animation: appPulseGlow 3s infinite; }
+
+  #cherryAppRoot .cherry-btn-outer:hover { transform: scale(1.05); background: rgba(200,16,46,.3); }
+
+  #cherryAppRoot .cherry-btn-inner { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(145deg,#C8102E,#8B0017); box-shadow: 0 0 22px rgba(200,16,46,.65),0 5px 16px rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; font-size: 30px; }
+
+  @keyframes appPulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(200,16,46,.3);}50%{box-shadow:0 0 0 12px rgba(200,16,46,0);} }
+
+  #cherryAppRoot .capture-hint { font-size: 11px; color: rgba(255,255,255,.35); letter-spacing: .1em; text-transform: uppercase; }
+
+
+
+  #cherryAppRoot .app-capture-overlay { position: absolute; inset: 0; z-index: 100; background: linear-gradient(180deg,rgba(15,4,8,.97) 0%,rgba(30,8,16,.99) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 30px; animation: appOverlayIn .4s ease-out; }
+
+  @keyframes appOverlayIn { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;} }
+
+  #cherryAppRoot .overlay-cherry { font-size: 64px; margin-bottom: 24px; animation: appFloatCherry 3s ease-in-out infinite; }
+
+  @keyframes appFloatCherry { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
+
+  #cherryAppRoot .overlay-poem { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; font-style: italic; color: rgba(255,220,215,.95); text-align: center; line-height: 1.5; margin-bottom: 16px; }
+
+  #cherryAppRoot .overlay-divider { width: 40px; height: 1px; background: rgba(200,16,46,.5); margin: 8px auto 20px; }
+
+  #cherryAppRoot .overlay-prompt { font-size: 14px; color: rgba(255,255,255,.5); text-align: center; margin-bottom: 36px; line-height: 1.6; }
+
+  #cherryAppRoot .overlay-actions { display: flex; gap: 12px; width: 100%; }
+
+  #cherryAppRoot .overlay-save { flex: 1; background: #C8102E; color: white; border: none; border-radius: 50px; padding: 15px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all .2s; }
+
+  #cherryAppRoot .overlay-save:hover { background: #8B0017; }
+
+  #cherryAppRoot .overlay-discard { flex: 1; background: transparent; color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.15); border-radius: 50px; padding: 15px; font-size: 14px; cursor: pointer; }
+
+
+
+  #cherryAppRoot .app-moment-overlay { position: absolute; inset: 0; z-index: 200; background: rgba(15,4,8,.92); display: flex; align-items: flex-end; animation: appSlideUp .3s ease-out; }
+
+  @keyframes appSlideUp { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;} }
+
+  #cherryAppRoot .moment-sheet { background: #FDF8F0; border-radius: 24px 24px 0 0; width: 100%; padding: 24px; max-height: 80%; overflow-y: auto; scrollbar-width: none; }
+
+  #cherryAppRoot .moment-sheet::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .moment-sheet-handle { width: 36px; height: 4px; background: #ddd; border-radius: 2px; margin: 0 auto 20px; }
+
+  #cherryAppRoot .moment-sheet-emoji { font-size: 52px; text-align: center; display: block; margin-bottom: 12px; }
+
+  #cherryAppRoot .moment-sheet-label { font-family: 'Cormorant Garamond', serif; font-size: 24px; text-align: center; color: #2a1015; margin-bottom: 8px; }
+
+  #cherryAppRoot .moment-sheet-poem { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: #888; text-align: center; line-height: 1.5; margin-bottom: 20px; }
+
+  #cherryAppRoot .moment-sheet-meta { font-size: 11px; color: #bbb; text-align: center; margin-bottom: 20px; }
+
+  #cherryAppRoot .moment-sheet-actions { display: flex; gap: 10px; }
+
+  #cherryAppRoot .moment-action-btn { flex: 1; padding: 13px; border-radius: 50px; font-size: 13px; cursor: pointer; font-weight: 500; }
+
+  #cherryAppRoot .moment-action-primary { background: #C8102E; color: white; border: none; }
+
+  #cherryAppRoot .moment-action-secondary { background: transparent; color: #666; border: 1.5px solid #e0e0e0; }
+
+
+
+  #cherryAppRoot .app-lesson-overlay { position: absolute; inset: 0; z-index: 250; background: rgba(15,4,8,.85); display: flex; align-items: flex-end; animation: appFadeIn .2s ease-out; }
+
+  @keyframes appFadeIn { from{opacity:0;}to{opacity:1;} }
+
+  #cherryAppRoot .lesson-sheet { background: #FDF8F0; border-radius: 24px 24px 0 0; width: 100%; max-height: 88%; overflow-y: auto; scrollbar-width: none; }
+
+  #cherryAppRoot .lesson-sheet::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .lesson-sheet-handle { width: 36px; height: 4px; background: #ddd; border-radius: 2px; margin: 14px auto 0; }
+
+  #cherryAppRoot .lesson-sheet-header { padding: 20px 24px 16px; border-bottom: 1px solid rgba(0,0,0,.06); }
+
+  #cherryAppRoot .lesson-type-pill { display: inline-block; border-radius: 50px; padding: 4px 12px; font-size: 11px; font-weight: 500; margin-bottom: 10px; }
+
+  #cherryAppRoot .lesson-sheet-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #1a0408; line-height: 1.3; margin-bottom: 4px; }
+
+  #cherryAppRoot .lesson-sheet-duration { font-size: 11px; color: #bbb; }
+
+  #cherryAppRoot .lesson-sheet-body { padding: 22px 24px 32px; font-size: 15px; color: #3a2025; line-height: 1.85; white-space: pre-line; font-weight: 300; }
+
+  #cherryAppRoot .lesson-sheet-close { width: 100%; padding: 16px; background: #C8102E; color: white; border: none; font-size: 14px; font-weight: 500; cursor: pointer; }
+
+
+
+  #cherryAppRoot .app-cat-overlay { position: absolute; inset: 0; z-index: 200; background: #FDF8F0; overflow-y: auto; animation: appSlideUpFull .3s ease-out; padding-bottom: 40px; scrollbar-width: none; }
+
+  #cherryAppRoot .app-cat-overlay::-webkit-scrollbar { display: none; }
+
+  @keyframes appSlideUpFull { from{transform:translateY(40px);opacity:0;}to{transform:none;opacity:1;} }
+
+  #cherryAppRoot .cat-overlay-header { padding: 52px 22px 20px; }
+
+  #cherryAppRoot .cat-back { background: none; border: none; font-size: 14px; color: #C8102E; cursor: pointer; font-weight: 500; padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
+
+  #cherryAppRoot .cat-overlay-emoji { font-size: 40px; margin-bottom: 8px; }
+
+  #cherryAppRoot .cat-overlay-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #1a0408; margin-bottom: 4px; }
+
+  #cherryAppRoot .cat-overlay-tagline { font-size: 13px; color: #999; line-height: 1.5; }
+
+  #cherryAppRoot .lesson-list { padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+
+  #cherryAppRoot .lesson-card { background: white; border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: transform .15s; box-shadow: 0 2px 12px rgba(0,0,0,.06); display: flex; align-items: center; gap: 14px; }
+
+  #cherryAppRoot .lesson-card:hover { transform: translateY(-1px); }
+
+  #cherryAppRoot .lesson-card-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  #cherryAppRoot .lesson-card-title { font-size: 14px; color: #2a1015; line-height: 1.35; margin-bottom: 3px; }
+
+  #cherryAppRoot .lesson-card-meta { font-size: 11px; color: #bbb; }
+
+  #cherryAppRoot .lesson-card-arrow { margin-left: auto; color: #ddd; font-size: 14px; flex-shrink: 0; }
+
+
+
+  #cherryAppRoot .app-settings-overlay { position: absolute; inset: 0; z-index: 300; background: rgba(15,4,8,.6); animation: appFadeIn .2s ease-out; }
+
+  #cherryAppRoot .settings-drawer { position: absolute; top: 0; right: 0; width: 300px; height: 100%; background: #FDF8F0; box-shadow: -8px 0 40px rgba(0,0,0,.2); animation: appSlideRight .25s ease-out; display: flex; flex-direction: column; overflow: hidden; }
+
+  @keyframes appSlideRight { from{transform:translateX(100%);}to{transform:translateX(0);} }
+
+  #cherryAppRoot .drawer-header { background: linear-gradient(160deg,#8B0017,#C8102E); padding: 52px 20px 20px; position: relative; }
+
+  #cherryAppRoot .drawer-close { position: absolute; top: 52px; right: 20px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.2); border: none; color: white; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+  #cherryAppRoot .drawer-tabs { display: flex; gap: 8px; margin-top: 12px; }
+
+  #cherryAppRoot .drawer-tab { flex: 1; padding: 8px; border-radius: 50px; font-size: 12px; cursor: pointer; text-align: center; border: 1.5px solid rgba(255,255,255,.3); color: rgba(255,255,255,.7); font-weight: 500; transition: all .2s; background: transparent; }
+
+  #cherryAppRoot .drawer-tab.active { background: white; color: #C8102E; border-color: white; }
+
+  #cherryAppRoot .drawer-body { flex: 1; overflow-y: auto; padding: 20px; scrollbar-width: none; }
+
+  #cherryAppRoot .drawer-body::-webkit-scrollbar { display: none; }
+
+  #cherryAppRoot .drawer-profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg,#C8102E,#8B0017); display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 10px; }
+
+  #cherryAppRoot .drawer-profile-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; text-align: center; color: #2a1015; margin-bottom: 2px; }
+
+  #cherryAppRoot .drawer-profile-tagline { font-size: 11px; color: #aaa; text-align: center; margin-bottom: 16px; }
+
+  #cherryAppRoot .drawer-stats { display: flex; gap: 8px; margin-bottom: 20px; }
+
+  #cherryAppRoot .drawer-stat { flex: 1; background: white; border-radius: 14px; padding: 12px 8px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+
+  #cherryAppRoot .drawer-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #C8102E; }
+
+  #cherryAppRoot .drawer-stat-lbl { font-size: 9px; color: #bbb; text-transform: uppercase; letter-spacing: .08em; margin-top: 1px; }
+
+  #cherryAppRoot .sub-badge { background: linear-gradient(135deg,#C8102E,#8B0017); border-radius: 14px; padding: 14px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(200,16,46,.25); margin-bottom: 16px; }
+
+  #cherryAppRoot .sub-badge-label { font-size: 14px; font-weight: 500; color: white; }
+
+  #cherryAppRoot .sub-badge-sub { font-size: 10px; color: rgba(255,255,255,.6); margin-top: 1px; }
+
+  #cherryAppRoot .sub-badge-btn { margin-left: auto; background: rgba(255,255,255,.2); color: white; border: none; border-radius: 50px; padding: 6px 12px; font-size: 11px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+
+  #cherryAppRoot .drawer-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: #bbb; font-weight: 500; margin-bottom: 10px; }
+
+  #cherryAppRoot .drawer-card { background: white; border-radius: 14px; padding: 13px 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.04); cursor: pointer; transition: transform .15s; }
+
+  #cherryAppRoot .drawer-card:hover { transform: translateY(-1px); }
+
+  #cherryAppRoot .drawer-card-icon { width: 36px; height: 36px; border-radius: 10px; background: #F9E4E8; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+
+  #cherryAppRoot .drawer-card-label { font-size: 13px; color: #2a1015; }
+
+  #cherryAppRoot .drawer-card-sub { font-size: 10px; color: #bbb; margin-top: 1px; }
+
+  #cherryAppRoot .drawer-card-arrow { margin-left: auto; color: #ddd; font-size: 14px; }
+
+
+
+  #cherryAppRoot .app-bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid rgba(0,0,0,.08); display: flex; align-items: center; padding: 10px 20px 22px; z-index: 50; box-shadow: 0 -4px 24px rgba(0,0,0,.08); }
+
+  #cherryAppRoot .app-nav-tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; color: #ccc; transition: color .2s; padding: 4px; }
+
+  #cherryAppRoot .app-nav-tab.active { color: #C8102E; }
+
+  #cherryAppRoot .app-nav-tab:hover { color: #C8102E; }
+
+  #cherryAppRoot .app-nav-icon { font-size: 20px; }
+
+  #cherryAppRoot .app-nav-label { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; font-weight: 500; }
+
+  #cherryAppRoot .nav-cherry { flex: 0 0 auto; width: 76px; height: 76px; border-radius: 50%; background: linear-gradient(145deg,#C8102E,#8B0017); box-shadow: 0 4px 24px rgba(200,16,46,.6); display: flex; align-items: center; justify-content: center; font-size: 34px; cursor: pointer; margin-top: -28px; border: 3px solid white; transition: all .2s; }
+
+  #cherryAppRoot .nav-cherry:hover { transform: translateY(-2px) scale(1.05); }
+
+
+
+  #cherryAppRoot .mood-vibe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; }
+
+  #cherryAppRoot .mood-vibe-card { border-radius: 18px; padding: 18px 14px 16px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all .2s; border: 2px solid transparent; box-shadow: 0 2px 12px rgba(0,0,0,.07); }
+
+  #cherryAppRoot .mood-vibe-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,16,46,.15); }
+
+  #cherryAppRoot .mood-vibe-card.selected { box-shadow: 0 6px 24px rgba(200,16,46,.35); border-color: rgba(255,255,255,.3); }
+
+  #cherryAppRoot .mood-vibe-emoji { font-size: 30px; }
+
+  #cherryAppRoot .mood-vibe-label { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; text-align: center; line-height: 1.3; }
+
+
+
+  #cherryAppRoot .app-capturing-flash { position: absolute; inset: 0; background: white; z-index: 999; animation: appFlashOut .5s ease-out forwards; }
+
+  @keyframes appFlashOut { from{opacity:.9;}to{opacity:0;pointer-events:none;} }
+
+  /* Side dot navigation */
+
+  .side-dots {
+
+    position: fixed !important;
+
+    right: 28px !important;
+
+    left: auto !important;
+
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    z-index: 200;
+
+    display: flex !important;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    backdrop-filter: none !important;
+
+    width: auto !important;
+
+  }
+
+  .side-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--cherry-light);
+
+    display: block;
+
+    transition: all 0.3s ease;
+
+    opacity: 0.5;
+
+    cursor: none;
+
+  }
+
+  .side-dot:hover {
+
+    opacity: 1;
+
+    transform: scale(1.3);
+
+  }
+
+  .side-dot.active {
+
+    background: var(--cherry);
+
+    opacity: 1;
+
+    transform: scale(1.5);
+
+  }
+
+  @media (max-width: 768px) {
+
+    .side-dots { display: none; }
+
+  }
+
+</style>
+
 </head>
+
 <body>
 
-<div class="container">
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <span class="logo-icon">🍒</span>
-            <span class="logo-text">cherry</span>
-            <span class="logo-sub">ROMANTICIZE YOUR LIFE</span>
-        </div>
-        <div class="nav-links">
-            <a href="#">HOME</a>
-            <a href="#">GARDEN</a>
-            <a href="#">LEARN</a>
-            <a href="#" class="app-badge">
-                <i class="fab fa-apple"></i> FREE DOWNLOAD
-            </a>
-        </div>
-    </nav>
 
-    <!-- Hero with LIVE iPhone -->
-    <div class="hero">
-        <div class="hero-left">
-            <h1>"Find the beauty that was always already here"</h1>
-            <p>A daily practice of noticing, savoring, and living more beautifully. Your mindful companion for romanticizing everyday moments.</p>
-        </div>
-        <div class="hero-image">
-            <div class="iphone-shell" id="iphoneShell">
-                <div class="iphone-notch">
-                    <div class="iphone-speaker"></div>
-                    <div class="iphone-camera-dot"></div>
-                </div>
-                <div class="cherry-app-embed" id="cherryAppEmbed">
-                    <div class="capturing-flash-embed hidden-embed" id="flashEmbed"></div>
-                    <div class="capture-overlay-embed hidden-embed" id="captureOverlayEmbed">
-                        <div class="overlay-cherry-embed">🍒</div>
-                        <div class="overlay-poem-embed" id="overlayPoemEmbed"></div>
-                        <div class="overlay-divider-embed"></div>
-                        <div class="overlay-prompt-embed">What made you feel alive?</div>
-                        <div class="overlay-actions-embed">
-                            <button class="overlay-save-embed" onclick="saveToGardenEmbed()">Save 🌿</button>
-                            <button class="overlay-discard-embed" onclick="discardCaptureEmbed()">Discard</button>
-                        </div>
-                    </div>
-                    <div class="screen-embed" id="mainScreenEmbed"></div>
-                    <div class="bottom-nav-embed">
-                        <div class="nav-tab-embed active" onclick="setTabEmbed('home')">
-                            <span class="nav-icon-embed">🏠</span>
-                            <span>Home</span>
-                        </div>
-                        <div class="nav-tab-embed" onclick="setTabEmbed('garden')">
-                            <span class="nav-icon-embed">🌿</span>
-                            <span>Garden</span>
-                        </div>
-                        <div class="nav-cherry-embed" onclick="setTabEmbed('cherry')">🍒</div>
-                        <div class="nav-tab-embed" onclick="setTabEmbed('learn')">
-                            <span class="nav-icon-embed">📖</span>
-                            <span>Learn</span>
-                        </div>
-                        <div class="nav-tab-embed" onclick="setTabEmbed('profile')">
-                            <span class="nav-icon-embed">👤</span>
-                            <span>Profile</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="cursor-ring" id="cursorRing"></div>
+
+
+
+<!-- Nav -->
+
+<nav>
+
+  <div class="nav-logo"><span style="font-size:22px;vertical-align:middle;">🍒</span> Cherry</div>
+
+  <ul class="nav-links">
+
+    <li><a href="#hero">Home</a></li>
+
+    <li><a href="#features">The App</a></li>
+
+    <li><a href="#rituals">Community</a></li>
+
+    <li><a href="#pricing">Feelings</a></li>
+
+    <li><a href="#bloom">Bloom</a></li>
+
+  </ul>
+
+  <div class="nav-store-btns">
+
+    <a href="#" class="store-btn-hero">
+
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+
+      <div>
+
+        <div class="store-btn-hero-sub">Download on the</div>
+
+        <div class="store-btn-hero-main">App Store</div>
+
+      </div>
+
+    </a>
+
+    <a href="#" class="store-btn-hero">
+
+      <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76c.37.21.8.22 1.19.04l11.61-6.58-2.4-2.42-10.4 8.96z" fill="#EA4335"/><path d="M20.46 10.89l-2.9-1.64-2.58 2.58 2.58 2.58 2.92-1.65c.83-.47.83-1.4-.02-1.87z" fill="#FBBC04"/><path d="M4.37.24C3.57.06 2.86.44 2.5 1.1L13.28 11.9l2.6-2.6L4.37.24z" fill="#4285F4"/><path d="M2.5 22.9c.36.66 1.07 1.04 1.87.86l11.51-11.51-2.6-2.6L2.5 22.9z" fill="#34A853"/></svg>
+
+      <div>
+
+        <div class="store-btn-hero-sub">GET IT ON</div>
+
+        <div class="store-btn-hero-main">Google Play</div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</nav>
+
+
+
+<!-- Side dot navigation -->
+
+<nav class="side-dots" id="sideDots">
+
+  <a href="#hero"     class="side-dot active" data-section="hero"     title="Home"></a>
+
+  <a href="#features" class="side-dot"        data-section="features" title="The App"></a>
+
+  <a href="#rituals"  class="side-dot"        data-section="rituals"  title="Community"></a>
+
+  <a href="#pricing"  class="side-dot"        data-section="pricing"  title="Your Energy"></a>
+
+  <a href="#bloom"    class="side-dot"        data-section="bloom"    title="Begin Blooming"></a>
+
+</nav>
+
+<section class="hero" id="hero">
+
+  <div class="hero-bg"></div>
+
+
+
+  <div class="hero-row">
+
+    <!-- Left: text -->
+
+    <div class="hero-text">
+
+      <p class="hero-eyebrow">🍒 Main Character Energy</p>
+
+      <h1 class="hero-title">
+
+        Romanticize<br>
+
+        <em>your life.</em>
+
+      </h1>
+
+      <p class="hero-meet">Meet Cherry, the AI-powered app that turns ordinary moments into magic. Snap a moment, and Cherry gives it back to you as poetry, reflection, and a life worth savoring.</p>
+
+
+
+      <div class="hero-cta-group">
+
+      </div>
+
     </div>
 
-    <!-- Quote -->
-    <div class="quote-section">
-        <blockquote>"Romanticizing your life is a form of mindfulness — a shift in perspective that allows you to appreciate everyday life and mundane things."</blockquote>
-        <cite>— Samantha Vincenty, SELF Magazine</cite>
+
+
+    <!-- Right: iPhone app -->
+
+    <div class="hero-visual">
+
+    <!-- Float rings -->
+
+    <div class="float-rings-wrap">
+
+      <div class="float-ring"></div>
+
+      <div class="float-ring"></div>
+
+      <div class="float-ring"></div>
+
     </div>
 
-    <!-- SINGLE Feature Showcase (removed 2 duplicates) -->
-    <div class="feature-showcase">
-        <div class="feature-showcase-image">
-            <img src="images/image5.png" alt="Main Character Energy">
-        </div>
-        <div class="feature-showcase-content">
-            <span class="feature-badge-large">Start Here</span>
-            <h2>Become the Main Character of Your Own Life</h2>
-            <p>Transform your perspective with our guided lessons on main character energy. Learn to move through your life with intention, presence, and grace.</p>
-            <ul class="feature-list">
-                <li>4 transformative lessons</li>
-                <li>Daily mindfulness practices</li>
-                <li>Personal reflection prompts</li>
-                <li>Community support</li>
-            </ul>
-        </div>
-    </div>
 
-    <!-- How It Works (NEW section for balance) -->
-    <div class="how-it-works">
-        <h2>How Cherry Works</h2>
-        <div class="steps-grid">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Notice</h3>
-                <p>Receive daily invitations to pause and observe the beauty around you</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Capture</h3>
-                <p>Cherry-ish moments with your camera and poetic reflections</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Cultivate</h3>
-                <p>Watch your garden grow as you build a practice of presence</p>
-            </div>
-        </div>
-    </div>
 
-    <!-- SINGLE Garden Showcase (removed 1 duplicate) -->
-    <div class="garden-showcase">
-        <div class="garden-showcase-content">
-            <h2>Your Personal Garden</h2>
-            <p>A living archive of your most cherished moments. Each memory is a seed that grows into a beautiful practice of mindfulness.</p>
-            <div class="garden-stats">
-                <div class="garden-stat">
-                    <span class="garden-stat-number">6</span>
-                    <span class="garden-stat-label">Moments</span>
-                </div>
-                <div class="garden-stat">
-                    <span class="garden-stat-number">12</span>
-                    <span class="garden-stat-label">Day Streak</span>
-                </div>
-                <div class="garden-stat">
-                    <span class="garden-stat-number">100</span>
-                    <span class="garden-stat-label">Goal</span>
-                </div>
-            </div>
-            <p style="font-size: 15px; color: #8a7a72; font-style: italic;">"the first sip is always a ceremony" — Morning Coffee, Mar 6</p>
-        </div>
-        <div class="garden-showcase-image">
-            <img src="images/image13.png" alt="Your Garden">
-        </div>
-    </div>
+    <!-- iPhone shell with the full interactive Cherry app inside -->
 
-    <!-- Science + Routine -->
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fas fa-brain"></i>
-            <h3>The Science of Mindfulness</h3>
-            <p>UCLA Health Research shows mindfulness decreases anxiety, depression, and emotional reactivity while increasing well-being and concentration.</p>
-            <div class="stat-group">
-                <div><span class="stat-number">↓86%</span><br>anxiety</div>
-                <div><span class="stat-number">↑45%</span><br>well-being</div>
-            </div>
-        </div>
-        <div class="info-card">
-            <i class="fas fa-seedling"></i>
-            <h3>Romanticize Your Routine</h3>
-            <p>Three simple practices that transform mundane moments into meaningful rituals.</p>
-            <div class="tag-group">
-                <span class="tag">☀️ Morning</span>
-                <span class="tag">💪 Movement</span>
-                <span class="tag">📚 Focus</span>
-            </div>
-        </div>
-    </div>
+    <div class="iphone-shell-hero">
 
-    <!-- CTA -->
-    <div class="cta-section">
-        <h2>Start romanticizing your life today 🍒</h2>
-        <p>Free download · No ads · Mindful design</p>
-        <a href="#" class="download-btn">
-            <i class="fab fa-apple"></i> Download on the App Store
-        </a>
-    </div>
+      <div class="iphone-notch-hero">
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>🍒 cherry — romanticize your life, one moment at a time</p>
-        <p style="margin-top: 12px;">HOME | GARDEN | LEARN</p>
-        <p style="margin-top: 20px;">© 2026 Cherry App</p>
-    </footer>
+        <div class="iphone-speaker-hero"></div>
+
+        <div class="iphone-camera-dot-hero"></div>
+
+      </div>
+
+      <div class="iphone-side-btn-hero iphone-vol-up-hero"></div>
+
+      <div class="iphone-side-btn-hero iphone-vol-dn-hero"></div>
+
+      <div class="iphone-side-btn-hero iphone-power-hero"></div>
+
+      <div class="iphone-home-bar-hero"></div>
+
+
+
+      <!-- Cherry App -->
+
+      <div id="cherryAppRoot">
+
+
+
+        <div class="app-capturing-flash app-hidden" id="appCapturingFlash"></div>
+
+
+
+        <div class="app-capture-overlay app-hidden" id="appCaptureOverlay">
+
+          <div class="overlay-cherry">🍒</div>
+
+          <div class="overlay-poem app-serif" id="appOverlayPoem"></div>
+
+          <div class="overlay-divider"></div>
+
+          <div class="overlay-prompt">What made you feel alive in this moment?</div>
+
+          <div class="overlay-actions">
+
+            <button class="overlay-save" onclick="appSaveToGarden()">Save to Garden 🌿</button>
+
+            <button class="overlay-discard" onclick="appDiscardCapture()">Discard</button>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="app-moment-overlay app-hidden" id="appMomentOverlay" onclick="appCloseMoment(event)">
+
+          <div class="moment-sheet">
+
+            <div class="moment-sheet-handle"></div>
+
+            <span class="moment-sheet-emoji" id="appMomentEmoji"></span>
+
+            <div class="moment-sheet-label app-serif" id="appMomentLabel"></div>
+
+            <div class="moment-sheet-poem" id="appMomentPoem"></div>
+
+            <div class="moment-sheet-meta" id="appMomentMeta"></div>
+
+            <div class="moment-sheet-actions">
+
+              <button class="moment-action-btn moment-action-primary">Share ✨</button>
+
+              <button class="moment-action-btn moment-action-secondary" onclick="document.getElementById('appMomentOverlay').classList.add('app-hidden')">Close</button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="app-lesson-overlay app-hidden" id="appLessonOverlay" onclick="appCloseLesson(event)">
+
+          <div class="lesson-sheet">
+
+            <div class="lesson-sheet-handle"></div>
+
+            <div class="lesson-sheet-header">
+
+              <div class="lesson-type-pill" id="appLessonTypePill"></div>
+
+              <div class="lesson-sheet-title app-serif" id="appLessonTitle"></div>
+
+              <div class="lesson-sheet-duration" id="appLessonDuration"></div>
+
+            </div>
+
+            <div class="lesson-sheet-body" id="appLessonBody"></div>
+
+            <button class="lesson-sheet-close" onclick="document.getElementById('appLessonOverlay').classList.add('app-hidden')">Done ✓</button>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="app-cat-overlay app-hidden" id="appCatOverlay">
+
+          <div class="cat-overlay-header">
+
+            <button class="cat-back" onclick="appCloseCategory()">← Back to Learn</button>
+
+            <div class="cat-overlay-emoji" id="appCatEmoji"></div>
+
+            <div class="cat-overlay-title app-serif" id="appCatTitle"></div>
+
+            <div class="cat-overlay-tagline" id="appCatTagline"></div>
+
+          </div>
+
+          <div class="lesson-list" id="appLessonList"></div>
+
+        </div>
+
+
+
+        <div class="app-settings-overlay app-hidden" id="appSettingsOverlay" onclick="appCloseSettings(event)">
+
+          <div class="settings-drawer">
+
+            <div class="drawer-header">
+
+              <button class="drawer-close" onclick="document.getElementById('appSettingsOverlay').classList.add('app-hidden')">✕</button>
+
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:white;margin-bottom:14px" id="appDrawerHeading">Settings</div>
+
+              <div class="drawer-tabs">
+
+                <button class="drawer-tab active" id="appTabSettings" onclick="appSwitchDrawerTab('settings')">Settings</button>
+
+                <button class="drawer-tab" id="appTabProfile" onclick="appSwitchDrawerTab('profile')">Profile</button>
+
+              </div>
+
+            </div>
+
+            <div class="drawer-body" id="appDrawerBody"></div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="app-screen" id="appMainScreen"></div>
+
+
+
+        <div class="app-bottom-nav">
+
+          <div class="app-nav-tab active" id="app-nav-home" onclick="appSetTab('home')"><span class="app-nav-icon">🏠</span><span class="app-nav-label">Home</span></div>
+
+          <div class="app-nav-tab" id="app-nav-garden" onclick="appSetTab('garden')"><span class="app-nav-icon">🌿</span><span class="app-nav-label">Garden</span></div>
+
+          <div class="app-nav-tab" id="app-nav-learn" onclick="appSetTab('learn')"><span class="app-nav-icon">📖</span><span class="app-nav-label">Learn</span></div>
+
+          <div class="nav-cherry" onclick="appSetTab('cherry')">🍒</div>
+
+        </div>
+
+
+
+      </div><!-- #cherryAppRoot -->
+
+    </div><!-- .iphone-shell-hero -->
+
+  </div><!-- .hero-visual -->
+
+  <p style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-muted);margin-top:16px;opacity:0;animation:fadeUp 1s 1.3s forwards;text-transform:uppercase;letter-spacing:2px;">✦ TAP AROUND. IT IS FULLY INTERACTIVE.</p>
+
+
+
+  </div><!-- .hero-row -->
+
+</section>
+
+
+
+<!-- Prompts Ticker -->
+
+<div class="prompts-section">
+
+  <div class="ticker-row">
+
+    <div class="ticker-item">🌸 What did you savor today?</div>
+
+    <div class="ticker-item">🍒 Write three things of beauty you witnessed</div>
+
+    <div class="ticker-item">✨ Describe today's sky in five words</div>
+
+    <div class="ticker-item">🌙 What made you feel most alive?</div>
+
+    <div class="ticker-item">🫧 The smallest joy you almost missed</div>
+
+    <div class="ticker-item">🕯️ A sound that felt like home</div>
+
+    <div class="ticker-item">🌸 What did you savor today?</div>
+
+    <div class="ticker-item">🍒 Write three things of beauty you witnessed</div>
+
+    <div class="ticker-item">✨ Describe today's sky in five words</div>
+
+    <div class="ticker-item">🌙 What made you feel most alive?</div>
+
+  </div>
+
+
+
 </div>
 
-<!-- LIVE APP JAVASCRIPT -->
+
+
+<!-- Features -->
+
+<section class="features-cal" id="features">
+
+  <h2 class="features-cal-title reveal">What does Cherry include?</h2>
+
+  <div class="features-cal-row">
+
+
+
+    <!-- Left: Cherry Camera card from app screenshots -->
+
+    <div class="features-cal-phone reveal">
+
+      <div style="width:280px;height:560px;border-radius:44px;position:relative;overflow:hidden;flex-shrink:0;box-shadow:0 48px 120px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.07);background:linear-gradient(170deg,#0e0108 0%,#1e0412 45%,#100208 100%);display:flex;flex-direction:column;">
+
+
+
+        <!-- Film grain -->
+
+        <div style="position:absolute;inset:0;z-index:1;background-image:url('data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'.82\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'.1\'/%3E%3C/svg%3E');opacity:.55;pointer-events:none;"></div>
+
+
+
+        <!-- Pulsing rings -->
+
+        <div style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;pointer-events:none;top:60px;">
+
+          <div style="position:absolute;width:280px;height:280px;border-radius:50%;border:1px solid rgba(200,16,46,.2);animation:appPulseGlow 3.5s ease-in-out infinite;"></div>
+
+          <div style="position:absolute;width:210px;height:210px;border-radius:50%;border:1px solid rgba(200,16,46,.3);animation:appPulseGlow 3.5s ease-in-out infinite;animation-delay:.7s;"></div>
+
+          <div style="position:absolute;width:140px;height:140px;border-radius:50%;border:1.5px solid rgba(200,16,46,.5);animation:appPulseGlow 3.5s ease-in-out infinite;animation-delay:1.4s;"></div>
+
+        </div>
+
+
+
+        <!-- Ambient glow -->
+
+        <div style="position:absolute;top:45%;left:50%;transform:translate(-50%,-30%);width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(200,16,46,.18) 0%,transparent 70%);z-index:2;pointer-events:none;"></div>
+
+
+
+        <!-- Top text -->
+
+        <div style="position:relative;z-index:6;padding:40px 28px 0;flex-shrink:0;">
+
+          <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,80,100,.7);font-weight:600;margin-bottom:12px;">✦ Cherry Camera</div>
+
+        </div>
+
+
+
+        <!-- Camera UI -->
+
+        <div style="position:relative;z-index:6;flex:1;display:flex;flex-direction:column;margin-top:20px;">
+
+
+
+          <!-- Filters -->
+
+          <div style="display:flex;gap:6px;padding:14px 16px 0;overflow:hidden;flex-shrink:0;">
+
+            <div style="background:#C8102E;border:none;border-radius:50px;padding:5px 12px;font-size:9px;color:white;white-space:nowrap;font-weight:500;">Golden Hour</div>
+
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:5px 12px;font-size:9px;color:rgba(255,255,255,.5);white-space:nowrap;">Soft Dream</div>
+
+            <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:5px 12px;font-size:9px;color:rgba(255,255,255,.5);white-space:nowrap;">Vintage</div>
+
+          </div>
+
+
+
+          <!-- Capture button -->
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding-bottom:12px;">
+
+            <div style="width:90px;height:90px;border-radius:50%;background:rgba(200,16,46,.15);border:2px solid rgba(200,16,46,.4);display:flex;align-items:center;justify-content:center;animation:appPulseGlow 3s ease-in-out infinite;">
+
+              <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(145deg,#C8102E,#8B0017);box-shadow:0 0 28px rgba(200,16,46,.8),0 0 52px rgba(200,16,46,.3);display:flex;align-items:center;justify-content:center;font-size:30px;">🍒</div>
+
+            </div>
+
+            <div style="font-size:9px;color:rgba(255,255,255,.28);letter-spacing:.15em;text-transform:uppercase;">take a picture</div>
+
+          </div>
+
+
+
+          <!-- Poem result -->
+
+          <div style="background:linear-gradient(to top,rgba(8,1,4,.98) 0%,rgba(18,3,10,.96) 70%,rgba(18,3,10,.88) 100%);padding:16px 20px 24px;border-top:1px solid rgba(200,16,46,.15);">
+
+            <div style="font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(200,16,46,.6);font-weight:600;margin-bottom:8px;">✦ Your moment, romanticized</div>
+
+            <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(255,225,218,.92);line-height:1.5;margin-bottom:12px;">"Wash every bowl, every dish as if you are bathing a baby  breathing in, feeling joy; breathing out, smiling."</div>
+
+            <div style="display:flex;gap:8px;">
+
+              <div style="flex:1;background:#C8102E;border-radius:50px;padding:9px;font-size:10px;color:white;text-align:center;font-weight:500;">Save to Garden 🌿</div>
+
+              <div style="flex:1;border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:9px;font-size:10px;color:rgba(255,255,255,.4);text-align:center;">Discard</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="features-cal-list">
+
+      <div class="feat-item reveal">
+
+        <h3 class="feat-item-title">Cherry Camera: The Hero Feature</h3>
+
+        <p class="feat-item-desc">Point your camera at anything, a sunset, a coffee, a quiet walk, and Cherry unwraps these gifts back to you as poetry, reflection, and a memory worth keeping.</p>
+
+      </div>
+
+      <div class="feat-item reveal">
+
+        <h3 class="feat-item-title">The Whimsy Menu</h3>
+
+        <p class="feat-item-desc">Browse our curated database of ways to add more magic to your life. Rediscover what 8 year old you loved. Yapping on a landline. Cozy tunes while cooking. Whimsy, served daily.</p>
+
+      </div>
+
+      <div class="feat-item reveal">
+
+        <h3 class="feat-item-title">How Are You Feeling?</h3>
+
+        <p class="feat-item-desc">Choose your energy, Whimsical, Warm, Curious, or Courageous, and Cherry reshapes your entire day around how you actually feel right now.</p>
+
+      </div>
+
+      <div class="feat-item reveal">
+
+        <h3 class="feat-item-title">Your Garden</h3>
+
+        <p class="feat-item-desc">Every moment you Cherry-ish lives here. A growing, beautiful archive of the life you're romanticizing, one snap at a time.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- Quote -->
+
+<section class="quote-section">
+
+  <p class="quote-text">"Protect your whimsy. Keep the spark, the romance, the childlike wonder."</p>
+
+  <p class="quote-source"> Mualla Ozdemir, Cherry Letters</p>
+
+</section>
+
+
+
+<!-- Community -->
+
+<section class="community-section" id="rituals">
+
+  <div class="community-top">
+
+    <div class="community-left">
+
+      <p class="community-eyebrow"> The Community</p>
+
+      <h2 class="community-title">Gentle rebels<br><em>choose wonder.</em></h2>
+
+    </div>
+
+    <div class="community-right">
+
+      <p class="community-desc">For the mom rushing through Tuesday. The 17-year-old figuring out who she is. The grandmother who still sees beauty everywhere.</p>
+
+    </div>
+
+  </div>
+
+  <div class="community-cards">
+
+    <div class="community-card reveal">
+
+      <div class="community-card-top">
+
+        <span class="community-emoji">🌹</span>
+
+        <span class="community-num">01</span>
+
+      </div>
+
+      <h3 class="community-card-title">Dreamers & Creatives</h3>
+
+      <p class="community-card-desc">Writers, artists, journalers, photographers who believe how you see your life is the most creative act of all.</p>
+
+    </div>
+
+    <div class="community-card reveal">
+
+      <div class="community-card-top">
+
+        <span class="community-emoji">✦</span>
+
+        <span class="community-num">02</span>
+
+      </div>
+
+      <h3 class="community-card-title">Soft Rebels</h3>
+
+      <p class="community-card-desc">Girls who journal on Sunday mornings, take the long way home, rewatch their comfort shows, and cry at sunsets. Optimism is not naive. It is their superpower.</p>
+
+    </div>
+
+    <div class="community-card reveal">
+
+      <div class="community-card-top">
+
+        <span class="community-emoji">🕯️</span>
+
+        <span class="community-num">03</span>
+
+      </div>
+
+      <h3 class="community-card-title">Ritual Keepers</h3>
+
+      <p class="community-card-desc">Moms who light a candle before the dishes. Grandmas who press flowers and save every birthday card. Women who know that how you do small things is how you do everything.</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- Today's Energy -->
+
+<section class="energy-section" id="pricing">
+
+  <div class="energy-top">
+
+    <div class="energy-left">
+
+      <p class="energy-eyebrow"> Today's Energy</p>
+
+      <h2 class="energy-title">How are you feeling<br><em>right now?</em></h2>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="energy-cards">
+
+    <div class="energy-card active" onclick="selectEnergy(0)">
+
+      <span class="energy-emoji">🌸</span>
+
+      <p class="energy-label">Whimsical</p>
+
+    </div>
+
+    <div class="energy-card" onclick="selectEnergy(1)">
+
+      <span class="energy-emoji">🌻</span>
+
+      <p class="energy-label">Warm</p>
+
+    </div>
+
+    <div class="energy-card" onclick="selectEnergy(2)">
+
+      <span class="energy-emoji">🔍</span>
+
+      <p class="energy-label">Curious</p>
+
+    </div>
+
+    <div class="energy-card" onclick="selectEnergy(3)">
+
+      <span class="energy-emoji">💗</span>
+
+      <p class="energy-label">Courageous</p>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="energy-result" id="energyResult">
+
+    <div class="energy-result-left">
+
+      <p class="energy-result-eyebrow">🌸 Your Energy Today</p>
+
+      <h3 class="energy-result-title" id="energyResultTitle">Whimsical</h3>
+
+      <p class="energy-result-desc" id="energyResultDesc"></p>
+
+    </div>
+
+    <div class="energy-result-divider"></div>
+
+    <div class="energy-result-right">
+
+      <p class="energy-result-prompt-label">Your Romanticize Prompt</p>
+
+      <p class="energy-result-prompt" id="energyResultPrompt">What small, playful thing could you do just for the magic of it?</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section class="cta-section" id="bloom">
+
+  <div class="cta-bg"></div>
+
+  <div class="cta-flower">🌸</div>
+
+  <h2 class="cta-title reveal">
+
+    Cherry-ish<br>
+
+    <em>every moment.</em>
+
+  </h2>
+
+
+
+  <div class="hero-cta-group reveal" style="justify-content: center;">
+
+    <button class="btn-primary">Download Cherry 🍒</button>
+
+  </div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+<footer>
+
+  <div class="footer-main">
+
+    <div class="footer-brand-col">
+
+      <div class="footer-logo">🍒 <span class="footer-logo-text">Cherry</span></div>
+
+      <p class="footer-tagline">Romanticize Your Life</p>
+
+      <div class="footer-store-btns">
+
+        <a href="#" class="store-btn">
+
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+
+          <div>
+
+            <div class="store-btn-sub">Download on the</div>
+
+            <div class="store-btn-main">App Store</div>
+
+          </div>
+
+        </a>
+
+        <a href="#" class="store-btn">
+
+          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.18 23.76c.37.21.8.22 1.19.04l11.61-6.58-2.4-2.42-10.4 8.96z" fill="#EA4335"/><path d="M20.46 10.89l-2.9-1.64-2.58 2.58 2.58 2.58 2.92-1.65c.83-.47.83-1.4-.02-1.87z" fill="#FBBC04"/><path d="M4.37.24C3.57.06 2.86.44 2.5 1.1L13.28 11.9l2.6-2.6L4.37.24z" fill="#4285F4"/><path d="M2.5 22.9c.36.66 1.07 1.04 1.87.86l11.51-11.51-2.6-2.6L2.5 22.9z" fill="#34A853"/></svg>
+
+          <div>
+
+            <div class="store-btn-sub">GET IT ON</div>
+
+            <div class="store-btn-main">Google Play</div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="footer-links-col">
+
+      <div class="footer-col-heading">Legal</div>
+
+      <a href="#" class="footer-link">Privacy Policy</a>
+
+      <a href="#" class="footer-link">Terms of Use</a>
+
+      <a href="#" class="footer-link">Cookie Policy</a>
+
+    </div>
+
+
+
+    <div class="footer-links-col">
+
+      <div class="footer-col-heading">Company</div>
+
+      <a href="#" class="footer-link">Contact</a>
+
+      <a href="#" class="footer-link">About</a>
+
+      <a href="#" class="footer-link">Blog</a>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="footer-bottom">
+
+    <p class="footer-copy">© 2026 Cherry. All rights reserved.</p>
+
+    <div class="footer-socials">
+
+      <!-- Instagram -->
+
+      <a href="#" class="social-icon">
+
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+
+      </a>
+
+      <!-- TikTok -->
+
+      <a href="#" class="social-icon">
+
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+
+      </a>
+
+      <!-- LinkedIn -->
+
+      <a href="#" class="social-icon">
+
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
 <script>
-const poemsEmbed = [
-    "the light fell just so, and the world held its breath",
-    "in ordinary moments, extraordinary grace",
-    "you noticed. that is everything.",
-    "beauty was always here, waiting to be seen",
-    "time slows when we choose to look",
-    "this is the life you are living, love it",
-    "soft and golden, this ordinary afternoon"
-];
 
-const invitationsEmbed = [
-    "Notice the quality of light where you are ☀️",
-    "What texture is closest to your hand right now?",
-    "Find one thing that smells like home 🌿",
-    "Look for the colour that catches your eye today",
-    "What sound is keeping you company right now?",
-    "Notice how the steam rises from your cup ☕"
-];
+  // ── LANDING PAGE SCRIPTS (unchanged) ──────────────────────────
 
-const miniChallengesEmbed = [
-    {emoji: "📸", text: "Photograph your coffee"},
-    {emoji: "🌿", text: "Find something green"},
-    {emoji: "✍️", text: "One gratitude sentence"},
-    {emoji: "🌅", text: "Notice the sky today"},
-    {emoji: "🕯️", text: "Light a candle tonight"},
-    {emoji: "🎵", text: "Song for this moment"}
-];
 
-let momentsEmbed = [
-    {id: 1, color: "#E8D5C4", emoji: "☕", label: "Morning Coffee", poem: "the first sip is always a ceremony", date: "Mar 6", mood: "cozy"},
-    {id: 2, color: "#C8DDD4", emoji: "🌿", label: "Kitchen Window", poem: "green things reaching toward light", date: "Mar 5", mood: "calm"},
-    {id: 3, color: "#D4C8E0", emoji: "📚", label: "Reading Hour", poem: "lost and found in equal measure", date: "Mar 4", mood: "dreamy"},
-    {id: 4, color: "#E8D4C8", emoji: "🌅", label: "Sunset Walk", poem: "the day said goodbye in gold", date: "Mar 3", mood: "joyful"},
-];
 
-const moodVibesEmbed = [
-    {emoji: "🌸", label: "Quietly hopeful"},
-    {emoji: "✦", label: "Boldly alive"},
-    {emoji: "🕯️", label: "Tenderly fragile"},
-    {emoji: "🌙", label: "Dreamily curious"},
-    {emoji: "🍂", label: "Deeply grounded"},
-    {emoji: "🌹", label: "Wildly free"},
-];
+  const cursor = document.getElementById('cursor');
 
-let activeTabEmbed = 'home';
-let selectedMoodVibeEmbed = null;
-let currentInvitationEmbed = invitationsEmbed[Math.floor(Math.random() * invitationsEmbed.length)];
-let capturedPoemEmbed = '';
+  const ring = document.getElementById('cursorRing');
 
-function rndEmbed(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-function setTabEmbed(tab) {
-    activeTabEmbed = tab;
-    document.querySelectorAll('.nav-tab-embed').forEach(t => t.classList.remove('active'));
-    const navTabs = document.querySelectorAll('.nav-tab-embed');
-    if (tab === 'home') navTabs[0].classList.add('active');
-    else if (tab === 'garden') navTabs[1].classList.add('active');
-    else if (tab === 'learn') navTabs[2].classList.add('active');
-    else if (tab === 'profile') navTabs[3].classList.add('active');
-    renderEmbed();
-}
 
-function renderEmbed() {
-    const screen = document.getElementById('mainScreenEmbed');
-    if (activeTabEmbed === 'home') renderHomeEmbed(screen);
-    else if (activeTabEmbed === 'garden') renderGardenEmbed(screen);
-    else if (activeTabEmbed === 'learn') renderLearnEmbed(screen);
-    else if (activeTabEmbed === 'cherry') renderCherryEmbed(screen);
-    else if (activeTabEmbed === 'profile') renderProfileEmbed(screen);
-}
 
-function renderHomeEmbed(screen) {
-    screen.innerHTML = `
-        <div class="home-header-embed">
-            <div class="home-brand-embed">
-                <span style="font-size:18px">🍒</span>
-                <span class="home-brand-name-embed">Cherry</span>
-            </div>
-            <div class="home-tagline-embed">Romanticize your life</div>
-        </div>
-        <div class="invitation-card-embed">
-            <div class="invitation-label-embed">Today's Invitation</div>
-            <div class="invitation-text-embed">${currentInvitationEmbed}</div>
-            <button class="invitation-cta-embed" onclick="setTabEmbed('cherry')">Cherry-ish →</button>
-        </div>
-        <div class="section-label-embed">Recent Memories</div>
-        <div class="memory-scroll-embed">
-            ${momentsEmbed.slice(0, 4).map(m => `
-                <div class="memory-card-embed" style="background: ${m.color}">
-                    <span class="memory-card-emoji-embed">${m.emoji}</span>
-                    <div class="memory-card-poem-embed">"${m.poem}"</div>
-                    <div class="memory-card-date-embed">${m.date}</div>
-                </div>
-            `).join('')}
-        </div>
-        <div class="section-label-embed" style="color:#C8102E">✦ Morning Check-in</div>
-        <div style="padding:0 16px 10px">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#2a1015;font-style:italic">How are you feeling?</div>
-        </div>
-        <div class="mood-vibe-grid-embed">
-            ${moodVibesEmbed.map((v, i) => `
-                <div class="mood-vibe-card-embed ${selectedMoodVibeEmbed === i ? 'selected' : ''}" 
-                     onclick="selectMoodVibeEmbed(${i})">
-                    <div class="mood-vibe-emoji-embed">${v.emoji}</div>
-                    <div class="mood-vibe-label-embed">${v.label}</div>
-                </div>
-            `).join('')}
-        </div>
-        <div style="height:20px"></div>
-    `;
-}
+  document.addEventListener('mousemove', e => {
 
-function renderGardenEmbed(screen) {
-    screen.innerHTML = `
-        <div class="home-header-embed">
-            <div class="home-brand-embed">
-                <span style="font-size:18px">🍒</span>
-                <span class="home-brand-name-embed">Cherry</span>
-            </div>
-            <div class="home-tagline-embed">Your Garden</div>
-        </div>
-        <div style="padding:16px">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a0408;margin-bottom:4px">Your Garden</div>
-            <div style="font-size:11px;color:#999;margin-bottom:8px">${momentsEmbed.length} romanticized moments</div>
-            <div style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#FFD700,#FFA500);border-radius:50px;padding:4px 10px;font-size:10px;font-weight:500;color:#7A3B00">
-                🔥 12 day streak
-            </div>
-        </div>
-        <div style="padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            ${momentsEmbed.map(m => `
-                <div style="border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer">
-                    <div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:32px;background:${m.color}">${m.emoji}</div>
-                    <div style="background:white;padding:10px">
-                        <div style="font-size:11px;font-weight:500;color:#2a1015;margin-bottom:2px">${m.label}</div>
-                        <div style="font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:#888">"${m.poem}"</div>
-                    </div>
-                </div>
-            `).join('')}
-        </div>
-        <div style="height:20px"></div>
-    `;
-}
+    mouseX = e.clientX; mouseY = e.clientY;
 
-function renderLearnEmbed(screen) {
-    screen.innerHTML = `
-        <div class="home-header-embed">
-            <div class="home-brand-embed">
-                <span style="font-size:18px">🍒</span>
-                <span class="home-brand-name-embed">Cherry</span>
-            </div>
-            <div class="home-tagline-embed">Learn</div>
-        </div>
-        <div style="padding:16px">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#1a0408;margin-bottom:4px">Learn</div>
-            <div style="font-size:11px;color:#999">Mini guides for romanticizing life</div>
-        </div>
-        <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px">
-            <div style="border-radius:14px;background:linear-gradient(135deg,#8B0017,#C8102E);padding:14px;color:white">
-                <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,200,210,.9);margin-bottom:6px">✦ Start Here</div>
-                <div style="font-family:'Cormorant Garamond',serif;font-size:16px;margin-bottom:4px">Become the Main Character</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.6)">4 lessons · Begins with intention</div>
-            </div>
-            <div style="border-radius:14px;background:#FDE8EC;padding:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-                    <span style="font-size:24px">🌹</span>
-                    <div>
-                        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#C8102E">Ways to Romanticize</div>
-                        <div style="font-size:10px;color:#999">Turning ordinary into exquisite</div>
-                    </div>
-                </div>
-            </div>
-            <div style="border-radius:14px;background:#F2E8F8;padding:14px">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-                    <span style="font-size:24px">🕯️</span>
-                    <div>
-                        <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#9B59B6">The Art of Presence</div>
-                        <div style="font-size:10px;color:#999">Being here, fully and softly</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="height:20px"></div>
-    `;
-}
+    cursor.style.left = mouseX + 'px';
 
-function renderCherryEmbed(screen) {
-    screen.innerHTML = `
-        <div class="cherry-screen-embed">
-            <div class="camera-viewfinder-embed">
-                <div class="camera-grain-embed"></div>
-                <div class="camera-scene-text-embed">"point your cherry at something beautiful"</div>
-            </div>
-            <div class="filter-strip-embed">
-                <div class="filter-pill-embed active">Golden Hour</div>
-                <div class="filter-pill-embed">Soft Dream</div>
-                <div class="filter-pill-embed">Vintage</div>
-                <div class="filter-pill-embed">Bloom</div>
-            </div>
-            <div class="cherry-capture-zone-embed">
-                <div class="cherry-btn-outer-embed" onclick="handleCaptureEmbed()">
-                    <div class="cherry-btn-inner-embed">🍒</div>
-                </div>
-                <div class="capture-hint-embed">tap to romanticize</div>
-            </div>
-        </div>
-    `;
-}
+    cursor.style.top = mouseY + 'px';
 
-function renderProfileEmbed(screen) {
-    screen.innerHTML = `
-        <div class="home-header-embed">
-            <div class="home-brand-embed">
-                <span style="font-size:18px">🍒</span>
-                <span class="home-brand-name-embed">Cherry</span>
-            </div>
-            <div class="home-tagline-embed">Profile</div>
-        </div>
-        <div style="padding:20px 16px;text-align:center">
-            <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#C8102E,#8B0017);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 10px">🌸</div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#2a1015;margin-bottom:2px">Isabelle R.</div>
-            <div style="font-size:10px;color:#aaa;margin-bottom:16px">romanticizing the everyday</div>
-            <div style="display:flex;gap:8px;margin-bottom:16px">
-                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
-                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">${momentsEmbed.length}</div>
-                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Moments</div>
-                </div>
-                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
-                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">12</div>
-                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Streak</div>
-                </div>
-                <div style="flex:1;background:white;border-radius:12px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)">
-                    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#C8102E">8</div>
-                    <div style="font-size:8px;color:#bbb;text-transform:uppercase">Shared</div>
-                </div>
-            </div>
-            <div style="background:linear-gradient(135deg,#C8102E,#8B0017);border-radius:12px;padding:12px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(200,16,46,.25)">
-                <span style="font-size:20px">🍒</span>
-                <div style="text-align:left">
-                    <div style="font-size:12px;font-weight:500;color:white">Cherry Premium</div>
-                    <div style="font-size:9px;color:rgba(255,255,255,.6)">All lenses + digest</div>
-                </div>
-                <button style="margin-left:auto;background:rgba(255,255,255,.2);color:white;border:none;border-radius:50px;padding:5px 10px;font-size:9px;font-weight:500;cursor:pointer">Upgrade</button>
-            </div>
-        </div>
-        <div style="height:20px"></div>
-    `;
-}
+  });
 
-function selectMoodVibeEmbed(idx) {
-    selectedMoodVibeEmbed = idx;
-    renderEmbed();
-}
 
-function handleCaptureEmbed() {
-    const flash = document.getElementById('flashEmbed');
-    flash.classList.remove('hidden-embed');
-    setTimeout(() => {
-        flash.classList.add('hidden-embed');
-        capturedPoemEmbed = rndEmbed(poemsEmbed);
-        document.getElementById('overlayPoemEmbed').textContent = '"' + capturedPoemEmbed + '"';
-        document.getElementById('captureOverlayEmbed').classList.remove('hidden-embed');
-    }, 500);
-}
 
-function saveToGardenEmbed() {
-    const colors = ["#E8D5C4", "#C8DDD4", "#D4C8E0", "#E8D4C8"];
-    const emojis = ["🌸", "✨", "🍂", "🌙"];
-    momentsEmbed.unshift({
-        id: momentsEmbed.length + 1,
-        color: rndEmbed(colors),
-        emoji: rndEmbed(emojis),
-        label: "This Moment",
-        poem: capturedPoemEmbed,
-        date: "Today",
-        mood: "joyful"
+  function animateRing() {
+
+    ringX += (mouseX - ringX) * 0.12;
+
+    ringY += (mouseY - ringY) * .12;
+
+    ring.style.left = ringX + 'px';
+
+    ring.style.top = ringY + 'px';
+
+    requestAnimationFrame(animateRing);
+
+  }
+
+  animateRing();
+
+
+
+  document.querySelectorAll('button, a, .feature-card, .ticker-item').forEach(el => {
+
+    el.addEventListener('mouseenter', () => {
+
+      cursor.style.width = '20px';
+
+      cursor.style.height = '20px';
+
+      ring.style.width = '56px';
+
+      ring.style.height = '56px';
+
     });
-    document.getElementById('captureOverlayEmbed').classList.add('hidden-embed');
-    setTabEmbed('garden');
-}
 
-function discardCaptureEmbed() {
-    document.getElementById('captureOverlayEmbed').classList.add('hidden-embed');
-    setTabEmbed('home');
-}
+    el.addEventListener('mouseleave', () => {
 
-// Initialize
-renderEmbed();
+      cursor.style.width = '12px';
+
+      cursor.style.height = '12px';
+
+      ring.style.width = '36px';
+
+      ring.style.height = '36px';
+
+    });
+
+  });
+
+
+
+  function spawnPetal() {
+
+    const petal = document.createElement('div');
+
+    petal.className = 'petal';
+
+    petal.textContent = ['🍒', '🍒', '🍒', '🌸', '✿'][Math.floor(Math.random() * 5)];
+
+    petal.style.left = Math.random() * 100 + 'vw';
+
+    petal.style.top = '-30px';
+
+    petal.style.fontSize = (22 + Math.random() * 18) + 'px';
+
+    const dur = 6 + Math.random() * 8;
+
+    petal.style.animationDuration = dur + 's';
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), dur * 1000);
+
+  }
+
+  setInterval(spawnPetal, 1800);
+
+
+
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach((e, i) => {
+
+      if (e.isIntersecting) {
+
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+
+      }
+
+    });
+
+  }, { threshold: 0.1 });
+
+  reveals.forEach(r => observer.observe(r));
+
+
+
+  document.addEventListener('click', e => {
+
+    const ripple = document.createElement('div');
+
+    ripple.style.cssText = `
+
+      position: fixed; pointer-events: none; z-index: 9997;
+
+      width: 40px; height: 40px; border-radius: 50%;
+
+      background: rgba(210,4,45,0.25);
+
+      left: ${e.clientX - 20}px; top: ${e.clientY - 20}px;
+
+      animation: rippleOut 0.6s ease forwards;
+
+    `;
+
+    document.body.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+
+  });
+
+
+
+  const style = document.createElement('style');
+
+  style.textContent = `
+
+    @keyframes rippleOut {
+
+      from { transform: scale(0); opacity: 1; }
+
+      to { transform: scale(4); opacity: 0; }
+
+    }
+
+  `;
+
+  document.head.appendChild(style);
+
+
+
+
+
+  // ── CHERRY APP SCRIPTS (all functions prefixed with "app") ────
+
+
+
+  const appPoems = ["the light fell just so, and the world held its breath","in ordinary moments, extraordinary grace","you noticed. that is everything.","beauty was always here, waiting to be seen","time slows when we choose to look","this is the life you are living, love it","soft and golden, this ordinary afternoon"];
+
+  const appInvitations = ["Notice the quality of light where you are ☀️","What texture is closest to your hand right now?","Find one thing that smells like home 🌿","Look for the colour that catches your eye today","What sound is keeping you company right now?","Notice how the steam rises from your cup ☕"];
+
+  const appMiniChallenges = [{emoji:"📸",text:"Photograph your coffee"},{emoji:"🌿",text:"Find something green"},{emoji:"✍️",text:"One gratitude sentence"},{emoji:"🌅",text:"Notice the sky today"},{emoji:"🕯️",text:"Light a candle tonight"},{emoji:"🎵",text:"Song for this moment"}];
+
+
+
+  let appMoments = [
+
+    {id:1,color:"#E8D5C4",emoji:"☕",label:"Morning Coffee",poem:"the first sip is always a ceremony",date:"Mar 6",mood:"cozy"},
+
+    {id:2,color:"#C8DDD4",emoji:"🌿",label:"Kitchen Window",poem:"green things reaching toward light",date:"Mar 5",mood:"calm"},
+
+    {id:3,color:"#D4C8E0",emoji:"📚",label:"Reading Hour",poem:"lost and found in equal measure",date:"Mar 4",mood:"dreamy"},
+
+    {id:4,color:"#E8D4C8",emoji:"🌅",label:"Sunset Walk",poem:"the day said goodbye in gold",date:"Mar 3",mood:"joyful"},
+
+    {id:5,color:"#C8D4E8",emoji:"🕯️",label:"Evening Quiet",poem:"silence has its own texture",date:"Mar 2",mood:"peaceful"},
+
+    {id:6,color:"#E0D4C8",emoji:"🌧️",label:"Rainy Afternoon",poem:"the world cleaned itself for you",date:"Mar 1",mood:"cozy"},
+
+  ];
+
+
+
+  const appLearnCategories = [
+
+    {id:"main-character",emoji:"🌟",color:"#F2E8F8",accent:"#9B59B6",title:"Main Character Energy",tagline:"You are the protagonist of your own story",lessons:[
+
+      {title:"What It Means to Be the Main Character",duration:"3 min",type:"Guide",body:"Main character energy isn't about being the center of attention  it's about moving through your life with intention. It's the quiet power of someone who notices their own story unfolding, who chooses their coffee order with deliberateness, who pauses on a walk to look up at the clouds.\n\nStart small: narrate your morning in your head as if someone is watching. Not with vanity  with tenderness. You deserve to be the hero of the small moments."},
+
+      {title:"Morning Rituals That Set the Tone",duration:"4 min",type:"Lesson",body:"The first 20 minutes of your day write the opening scene of your story. A main character doesn't scroll immediately  they stretch, look out the window, feel the temperature of the air.\n\nTry: Make your bed slowly. Make your drink deliberately. Look at something outside before looking at a screen. These tiny acts signal to yourself: I am someone who tends to their life."},
+
+      {title:"How to Walk Like You Have a Soundtrack",duration:"2 min",type:"Practice",body:"Put on a song that makes you feel like the world is yours. Walk somewhere you've walked a hundred times. Notice how the same street looks different when you're fully present in your own story.\n\nThis isn't performance  it's permission. Permission to take up space, to move with ease, to feel that your life is worth a beautiful score."},
+
+      {title:"The Art of Dressing for Yourself",duration:"3 min",type:"Guide",body:"A main character dresses for the version of themselves they want to inhabit. Not for others, not for occasion  for the feeling.\n\nAsk yourself each morning: what character am I today? The cozy academic? The mysterious romantic? The soft and unhurried creative? Let your clothes be a costume for the life you're choosing."},
+
+    ]},
+
+    {id:"romanticize",emoji:"🌹",color:"#FDE8EC",accent:"#C8102E",title:"Ways to Romanticize Life",tagline:"Turning the ordinary into the exquisite",lessons:[
+
+      {title:"The Philosophy of Romanticizing",duration:"4 min",type:"Guide",body:"To romanticize your life is to decide  actively, daily  that beauty is not a destination but a practice. It is the radical act of treating your Tuesday like it matters.\n\nThis isn't delusion. You're not pretending life is perfect. You're training your eye to find what is already beautiful, already worthy of attention. The steam from your cup. The quality of afternoon light. The sound of rain."},
+
+      {title:"50 Ways to Romanticize Any Day",duration:"6 min",type:"List",body:"Light a candle even when no one is coming over. Buy yourself flowers on a random Wednesday. Take the long way home. Eat at a table, not at your desk. Write in a real notebook. Read physical books. Make your bed like it's a hotel. Cook something from scratch. Watch the sunset without photographing it first. Send a letter. Wear the nice perfume today. Use the good dishes. Walk slowly. Say thank you out loud to no one in particular. Make your coffee ritual sacred."},
+
+      {title:"Slowing Down as an Act of Love",duration:"3 min",type:"Practice",body:"Speed is the enemy of romanticization. When we rush, we miss the texture of life  the way light catches dust, the smell of an old bookshop, the warmth of a hand on a mug.\n\nPractice: Choose one daily task to do at half your normal speed this week. Washing dishes. Getting dressed. Walking to work. Let it become meditation. Let it become ceremony."},
+
+      {title:"Creating Atmosphere at Home",duration:"5 min",type:"Guide",body:"Your home is a set design for your life. You are the director. Soft lighting over harsh overhead bulbs. A candle in the evening. Music playing as you cook. Fresh flowers or plants that breathe with you.\n\nYou don't need to redecorate  you need to arrange what you have with intention. Put beautiful things where you'll see them first thing. Let your space tell you: this is a life worth living beautifully."},
+
+    ]},
+
+    {id:"presence",emoji:"🕯️",color:"#FFF8E8",accent:"#C07A30",title:"The Art of Presence",tagline:"Being here, fully and softly",lessons:[
+
+      {title:"What Presence Actually Feels Like",duration:"3 min",type:"Guide",body:"Presence is not the absence of thought  it's the decision to return. Again and again, to this room, this light, this breath.\n\nYou don't need to meditate for an hour. You need to look up from your phone. You need to feel the weight of your body in the chair. You need to notice what your senses are doing right now, without judgment."},
+
+      {title:"Sensory Anchoring Practice",duration:"4 min",type:"Practice",body:"When you feel scattered or anxious, anchor yourself through the senses. Name five things you can see. Four you can feel. Three you can hear. Two you can smell. One you can taste.\n\nThis is not a trick  it's a doorway. Each answer is a thread pulling you back into your body, into this moment, into the texture of being alive right now."},
+
+      {title:"Putting Down Your Phone on Purpose",duration:"2 min",type:"Practice",body:"Try this: put your phone face-down for the next meal. Not because phones are bad  but because you deserve to taste your food, to look out the window, to be fully somewhere for twenty minutes.\n\nPresence is a gift you give yourself. The phone will still be there. This moment won't."},
+
+    ]},
+
+    {id:"soft-life",emoji:"🌸",color:"#E8F4F0",accent:"#2E8B7A",title:"Living the Soft Life",tagline:"Choosing ease, beauty, and gentle pleasure",lessons:[
+
+      {title:"What the Soft Life Really Means",duration:"3 min",type:"Guide",body:"The soft life isn't about luxury  it's about choosing comfort over unnecessary hardness. It's saying no to things that drain you and yes to things that restore you.\n\nIt's the cashmere sweater you save for special occasions  worn on a Tuesday. It's the bath at 7pm because you're tired and you deserve care. It's the decision that your peace is not negotiable."},
+
+      {title:"Gentle Morning Practices",duration:"4 min",type:"Practice",body:"A soft morning begins the night before: lay out what you'll wear, prepare what you'll eat, leave yourself more time than you need.\n\nIn the morning, resist urgency. Move gently. Drink something warm before looking at anything that needs your attention. Breathe. The world can wait ten minutes while you remember who you are."},
+
+      {title:"The Luxury of Small Pleasures",duration:"3 min",type:"Guide",body:"You don't need a vacation. You need the right mug. You need the window cracked. You need a playlist for washing dishes that makes it feel like an evening in Paris.\n\nSmall pleasures compound. A beautiful pen. Sheets that smell good. A walk with no destination. These are not indulgences  they are the substance of a life that feels like yours."},
+
+    ]},
+
+    {id:"seasons",emoji:"🍂",color:"#F8EEE0",accent:"#B06A20",title:"Living with the Seasons",tagline:"Let nature set the rhythm of your life",lessons:[
+
+      {title:"Why Seasons Are a Love Language",duration:"3 min",type:"Guide",body:"Each season offers a different invitation. Spring says: begin again. Summer says: be outside, be warm, be alive. Autumn says: let go, get cozy, turn inward. Winter says: rest. You are allowed to rest.\n\nWhen you live with the seasons  eating differently, decorating differently, spending time differently  you move with life instead of against it."},
+
+      {title:"Seasonal Rituals to Create",duration:"5 min",type:"List",body:"Spring: plant something, do a deep clean, eat the first strawberry slowly.\n\nSummer: swim somewhere natural, make cold drinks with fresh fruit, sleep with the window open.\n\nAutumn: make soup from scratch, buy a candle that smells like the season, reread a favourite book.\n\nWinter: build a reading nest, make bread, write letters by hand, go to bed early without guilt.\n\nRituals don't need to be elaborate  they need to be repeated. That's what makes them sacred."},
+
+    ]},
+
+  ];
+
+
+
+  let appActiveTab = "home", appStreak = 12, appFilterMood = "all", appCapturedPoem = "";
+
+  let appCurrentInvitation = appInvitations[Math.floor(Math.random() * appInvitations.length)];
+
+  let appDrawerTabState = "settings", appSelectedMoodVibe = null;
+
+
+
+  const appMoodVibes = [
+
+    {emoji:"🌸",label:"Quietly hopeful"},
+
+    {emoji:"✦",label:"Boldly alive"},
+
+    {emoji:"🕯️",label:"Tenderly fragile"},
+
+    {emoji:"🌙",label:"Dreamily curious"},
+
+    {emoji:"🍂",label:"Deeply grounded"},
+
+    {emoji:"🌹",label:"Wildly free"},
+
+  ];
+
+
+
+  function appRnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+
+
+  function appSetTab(tab) {
+
+    appActiveTab = tab;
+
+    document.querySelectorAll('.app-nav-tab').forEach(t => t.classList.remove('active'));
+
+    const navEl = document.getElementById('app-nav-' + tab);
+
+    if (navEl) navEl.classList.add('active');
+
+    document.getElementById('appCatOverlay').classList.add('app-hidden');
+
+    appRender();
+
+  }
+
+
+
+  function appOpenSettingsDrawer() {
+
+    appDrawerTabState = 'settings';
+
+    appRenderDrawer();
+
+    document.getElementById('appSettingsOverlay').classList.remove('app-hidden');
+
+  }
+
+  function appCloseSettings(e) {
+
+    if (e.target === document.getElementById('appSettingsOverlay')) document.getElementById('appSettingsOverlay').classList.add('app-hidden');
+
+  }
+
+  function appSwitchDrawerTab(tab) {
+
+    appDrawerTabState = tab;
+
+    appRenderDrawer();
+
+  }
+
+  function appRenderDrawer() {
+
+    document.getElementById('appTabSettings').classList.toggle('active', appDrawerTabState === 'settings');
+
+    document.getElementById('appTabProfile').classList.toggle('active', appDrawerTabState === 'profile');
+
+    document.getElementById('appDrawerHeading').textContent = appDrawerTabState === 'profile' ? 'My Profile' : 'Settings';
+
+    const body = document.getElementById('appDrawerBody');
+
+    if (appDrawerTabState === 'profile') {
+
+      body.innerHTML = `
+
+        <div class="drawer-profile-avatar">🌸</div>
+
+        <div class="drawer-profile-name app-serif">Isabelle R.</div>
+
+        <div class="drawer-profile-tagline">romanticizing the everyday</div>
+
+        <div class="drawer-stats">
+
+          <div class="drawer-stat"><div class="drawer-stat-num app-serif">${appMoments.length}</div><div class="drawer-stat-lbl">Moments</div></div>
+
+          <div class="drawer-stat"><div class="drawer-stat-num app-serif">${appStreak}</div><div class="drawer-stat-lbl">Streak</div></div>
+
+          <div class="drawer-stat"><div class="drawer-stat-num app-serif">8</div><div class="drawer-stat-lbl">Shared</div></div>
+
+        </div>
+
+        <div class="sub-badge"><span style="font-size:22px">🍒</span><div><div class="sub-badge-label">Cherry Premium</div><div class="sub-badge-sub">All lenses + digest</div></div><button class="sub-badge-btn">Upgrade</button></div>
+
+        <div class="drawer-section-title">Challenges</div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🌸</div><div><div class="drawer-card-label">100 Moments Challenge</div><div class="drawer-card-sub">${appMoments.length}/100  keep going</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🌷</div><div><div class="drawer-card-label">Spring Blossoms</div><div class="drawer-card-sub">Seasonal lens unlocked</div></div><span class="drawer-card-arrow">›</span></div>
+
+      `;
+
+    } else {
+
+      body.innerHTML = `
+
+        <div class="drawer-section-title">Notifications</div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🔔</div><div><div class="drawer-card-label">Daily Reminder</div><div class="drawer-card-sub">8:00 AM</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">💌</div><div><div class="drawer-card-label">Weekly Digest</div><div class="drawer-card-sub">Every Sunday</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-section-title" style="margin-top:16px">Data</div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">📦</div><div><div class="drawer-card-label">Export Garden</div><div class="drawer-card-sub">Download your moments</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🖨️</div><div><div class="drawer-card-label">Print Memory Book</div><div class="drawer-card-sub">PDF of your garden</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-section-title" style="margin-top:16px">App</div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🎨</div><div><div class="drawer-card-label">Theme</div><div class="drawer-card-sub">Cherry Classic</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">🔒</div><div><div class="drawer-card-label">Privacy</div><div class="drawer-card-sub">Manage your data</div></div><span class="drawer-card-arrow">›</span></div>
+
+        <div class="drawer-card"><div class="drawer-card-icon">⭐</div><div><div class="drawer-card-label">Rate Cherry</div><div class="drawer-card-sub">Help us grow</div></div><span class="drawer-card-arrow">›</span></div>
+
+      `;
+
+    }
+
+  }
+
+
+
+  function appHeaderHTML() {
+
+    return `<div class="home-header"><div class="home-header-row"><div><div class="home-brand"><span style="font-size:28px">🍒</span><span class="home-brand-name app-serif">Cherry</span></div><div class="home-tagline">Romanticize your life</div></div><div class="app-settings-btn" onclick="appOpenSettingsDrawer()">⚙️</div></div></div>`;
+
+  }
+
+
+
+  function appOpenMoment(m) {
+
+    document.getElementById('appMomentEmoji').textContent = m.emoji;
+
+    document.getElementById('appMomentLabel').textContent = m.label;
+
+    document.getElementById('appMomentPoem').textContent = '"' + m.poem + '"';
+
+    document.getElementById('appMomentMeta').textContent = m.date + ' · ' + m.mood;
+
+    document.getElementById('appMomentOverlay').classList.remove('app-hidden');
+
+  }
+
+  function appCloseMoment(e) {
+
+    if (e.target === document.getElementById('appMomentOverlay')) document.getElementById('appMomentOverlay').classList.add('app-hidden');
+
+  }
+
+
+
+  function appOpenLesson(catIdx, lessonIdx) {
+
+    const cat = appLearnCategories[catIdx], lesson = cat.lessons[lessonIdx];
+
+    document.getElementById('appLessonTypePill').textContent = lesson.type;
+
+    document.getElementById('appLessonTypePill').style.background = cat.accent + '22';
+
+    document.getElementById('appLessonTypePill').style.color = cat.accent;
+
+    document.getElementById('appLessonTitle').textContent = lesson.title;
+
+    document.getElementById('appLessonDuration').textContent = lesson.duration + ' read';
+
+    document.getElementById('appLessonBody').textContent = lesson.body;
+
+    document.getElementById('appLessonOverlay').classList.remove('app-hidden');
+
+  }
+
+  function appCloseLesson(e) {
+
+    if (e.target === document.getElementById('appLessonOverlay')) document.getElementById('appLessonOverlay').classList.add('app-hidden');
+
+  }
+
+
+
+  function appOpenCategory(idx) {
+
+    const cat = appLearnCategories[idx];
+
+    document.getElementById('appCatEmoji').textContent = cat.emoji;
+
+    document.getElementById('appCatTitle').textContent = cat.title;
+
+    document.getElementById('appCatTagline').textContent = cat.tagline;
+
+    const list = document.getElementById('appLessonList');
+
+    list.innerHTML = cat.lessons.map((l, i) => `
+
+      <div class="lesson-card" onclick="appOpenLesson(${idx},${i})">
+
+        <div class="lesson-card-dot" style="background:${cat.accent}"></div>
+
+        <div style="flex:1"><div class="lesson-card-title">${l.title}</div><div class="lesson-card-meta">${l.duration} · ${l.type}</div></div>
+
+        <span class="lesson-card-arrow">›</span>
+
+      </div>`).join('');
+
+    document.getElementById('appCatOverlay').classList.remove('app-hidden');
+
+  }
+
+  function appCloseCategory() {
+
+    document.getElementById('appCatOverlay').classList.add('app-hidden');
+
+  }
+
+
+
+  function appHandleCapture() {
+
+    const flash = document.getElementById('appCapturingFlash');
+
+    flash.classList.remove('app-hidden');
+
+    flash.style.animation = 'none';
+
+    flash.offsetHeight;
+
+    flash.style.animation = 'appFlashOut .5s ease-out forwards';
+
+    setTimeout(() => {
+
+      flash.classList.add('app-hidden');
+
+      appCapturedPoem = appRnd(appPoems);
+
+      document.getElementById('appOverlayPoem').textContent = appCapturedPoem;
+
+      document.getElementById('appCaptureOverlay').classList.remove('app-hidden');
+
+    }, 500);
+
+  }
+
+  function appSaveToGarden() {
+
+    const colors = ["#E8D5C4","#C8DDD4","#D4C8E0","#E8D4C8"];
+
+    const emojis = ["🌸","✨","🍂","🌙"];
+
+    appMoments.unshift({id: appMoments.length + 1, color: appRnd(colors), emoji: appRnd(emojis), label: "This Moment", poem: appCapturedPoem, date: "Today", mood: "joyful"});
+
+    appStreak++;
+
+    document.getElementById('appCaptureOverlay').classList.add('app-hidden');
+
+    appSetTab('garden');
+
+  }
+
+  function appDiscardCapture() {
+
+    document.getElementById('appCaptureOverlay').classList.add('app-hidden');
+
+  }
+
+
+
+  function appSelectMoodVibe(idx) {
+
+    appSelectedMoodVibe = idx;
+
+    appRenderHome(document.getElementById('appMainScreen'));
+
+  }
+
+
+
+  function appRender() {
+
+    const screen = document.getElementById('appMainScreen');
+
+    if (appActiveTab === 'home') appRenderHome(screen);
+
+    else if (appActiveTab === 'garden') appRenderGarden(screen);
+
+    else if (appActiveTab === 'learn') appRenderLearn(screen);
+
+    else if (appActiveTab === 'cherry') appRenderCherry(screen);
+
+  }
+
+
+
+  function appRenderHome(screen) {
+
+    screen.innerHTML = `
+
+      ${appHeaderHTML()}
+
+      <div class="invitation-card">
+
+        <div class="invitation-label">Today's Invitation</div>
+
+        <div class="invitation-text app-serif">${appCurrentInvitation}</div>
+
+        <button class="invitation-cta" onclick="appSetTab('cherry')">Cherry-ish the moment →</button>
+
+      </div>
+
+      <div class="app-section-label">Mini Challenges</div>
+
+      <div class="mini-scroll">${appMiniChallenges.map(c => `<div class="mini-card"><div class="mini-card-emoji">${c.emoji}</div><div class="mini-card-text">${c.text}</div></div>`).join('')}</div>
+
+      <div style="padding:16px 22px 4px;display:flex;align-items:center;gap:6px">
+
+        <span style="font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#C8102E;font-weight:500">✦ Morning Check-in</span>
+
+      </div>
+
+      <div style="padding:0 22px 14px">
+
+        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#2a1015;font-style:italic">How are you feeling today?</div>
+
+      </div>
+
+      <div class="mood-vibe-grid">${appMoodVibes.map((v, i) => `
+
+        <div class="mood-vibe-card${appSelectedMoodVibe === i ? ' selected' : ''}"
+
+             style="background:${appSelectedMoodVibe === i ? '#C8102E' : 'white'}"
+
+             onclick="appSelectMoodVibe(${i})">
+
+          <span class="mood-vibe-emoji">${v.emoji}</span>
+
+          <span class="mood-vibe-label" style="color:${appSelectedMoodVibe === i ? 'white' : '#2a1015'}">${v.label}</span>
+
+        </div>`).join('')}</div>
+
+      <div style="height:24px"></div>`;
+
+  }
+
+
+
+  function appRenderGarden(screen) {
+
+    const moods = ["all","cozy","calm","dreamy","joyful","peaceful"];
+
+    const filtered = appFilterMood === 'all' ? appMoments : appMoments.filter(m => m.mood === appFilterMood);
+
+    const pct = Math.min((appMoments.length / 100) * 100, 100);
+
+    screen.innerHTML = `
+
+      ${appHeaderHTML()}
+
+      <div class="garden-header">
+
+        <div class="garden-title app-serif">Your Garden</div>
+
+        <div class="garden-sub">${appMoments.length} romanticized moments</div>
+
+        <div class="streak-badge">🔥 ${appStreak} day streak</div>
+
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="progress-bar-wrap">
+
+        <div class="progress-label">100 Moments Challenge</div>
+
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+
+        <div class="progress-count">${appMoments.length} / 100 moments captured</div>
+
+      </div>
+
+      <div class="mood-filter">${moods.map(m => `<div class="app-mood-chip${appFilterMood === m ? ' active' : ''}" onclick="appSetMoodFilter('${m}')">${m.charAt(0).toUpperCase() + m.slice(1)}</div>`).join('')}</div>
+
+      <div class="garden-grid">${filtered.map(m => `
+
+        <div class="garden-item" onclick="appOpenMomentById(${m.id})">
+
+          <div class="garden-item-top" style="background:${m.color}">${m.emoji}</div>
+
+          <div class="garden-item-bottom">
+
+            <div class="garden-item-label">${m.label}</div>
+
+            <div class="garden-item-poem">"${m.poem}"</div>
+
+            <div class="garden-item-date">${m.date}</div>
+
+          </div>
+
+        </div>`).join('')}</div>`;
+
+  }
+
+
+
+  function appRenderLearn(screen) {
+
+    screen.innerHTML = `
+
+      <div class="learn-header">
+
+        <div class="home-header-row" style="margin-bottom:20px;position:relative;z-index:1">
+
+          <div><div class="home-brand"><span style="font-size:28px">🍒</span><span class="home-brand-name app-serif">Cherry</span></div><div class="home-tagline">Romanticize your life</div></div>
+
+          <div class="app-settings-btn" onclick="appOpenSettingsDrawer()">⚙️</div>
+
+        </div>
+
+        <div class="learn-title app-serif" style="position:relative;z-index:1">Learn</div>
+
+        <div class="learn-sub" style="position:relative;z-index:1">Mini guides and lessons for romanticizing your everyday life</div>
+
+      </div>
+
+      <div class="learn-featured" onclick="appOpenCategory(0)">
+
+        <div class="learn-featured-label">✦ Start Here</div>
+
+        <div class="learn-featured-title app-serif">Become the Main Character of Your Own Life</div>
+
+        <div class="learn-featured-sub">4 lessons · Begins with intention, ends with transformation</div>
+
+      </div>
+
+      <div class="app-section-label">All Topics</div>
+
+      <div class="learn-cat-grid">${appLearnCategories.map((cat, i) => `
+
+        <div class="learn-cat-card" style="background:${cat.color}" onclick="appOpenCategory(${i})">
+
+          <div class="learn-cat-top">
+
+            <span class="learn-cat-emoji">${cat.emoji}</span>
+
+            <div>
+
+              <div class="learn-cat-title app-serif" style="color:${cat.accent}">${cat.title}</div>
+
+              <div class="learn-cat-tagline" style="color:${cat.accent}">${cat.tagline}</div>
+
+            </div>
+
+          </div>
+
+          <div class="learn-cat-lessons">
+
+            ${cat.lessons.slice(0, 3).map(l => `<span class="learn-cat-pill" style="background:${cat.accent}18;color:${cat.accent}">${l.type}</span>`).join('')}
+
+            ${cat.lessons.length > 3 ? `<span class="learn-cat-pill" style="background:${cat.accent}18;color:${cat.accent}">+${cat.lessons.length - 3} more</span>` : ''}
+
+          </div>
+
+        </div>`).join('')}</div>
+
+      <div style="height:16px"></div>`;
+
+  }
+
+
+
+  function appRenderCherry(screen) {
+
+    screen.innerHTML = `
+
+      <div class="cherry-screen">
+
+        <div class="camera-viewfinder">
+
+          <div class="camera-grain"></div>
+
+          <div class="camera-scene-text app-serif">"point your cherry at something beautiful"</div>
+
+        </div>
+
+        <div class="filter-strip">
+
+          ${["Golden Hour","Soft Dream","Vintage Film","Morning Mist","Bloom"].map((f, i) => `<div class="filter-pill${i === 0 ? ' active' : ''}" onclick="this.parentElement.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));this.classList.add('active')">${f}</div>`).join('')}
+
+        </div>
+
+        <div class="cherry-capture-zone">
+
+          <div class="cherry-btn-outer" onclick="appHandleCapture()">
+
+            <div class="cherry-btn-inner">🍒</div>
+
+          </div>
+
+          <div class="capture-hint">tap to romanticize</div>
+
+        </div>
+
+      </div>`;
+
+  }
+
+
+
+  function appOpenMomentById(id) {
+
+    const m = appMoments.find(x => x.id === id);
+
+    if (m) appOpenMoment(m);
+
+  }
+
+  function appSetMoodFilter(mood) {
+
+    appFilterMood = mood;
+
+    appRenderGarden(document.getElementById('appMainScreen'));
+
+  }
+
+
+
+  // Init app
+
+  appRenderDrawer();
+
+  appRender();
+
+  // Side dot navigation
+
+  const dotSections = ['hero', 'features', 'rituals', 'pricing', 'bloom'];
+
+  const dots = document.querySelectorAll('.side-dot');
+
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+
+
+  const dotObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        const id = entry.target.id;
+
+        // Update dots
+
+        dots.forEach(d => d.classList.remove('active'));
+
+        const activeDot = document.querySelector(`.side-dot[data-section="${id}"]`);
+
+        if (activeDot) activeDot.classList.add('active');
+
+        // Update nav links
+
+        navLinks.forEach(l => l.classList.remove('nav-active'));
+
+        const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+
+        if (activeLink) activeLink.classList.add('nav-active');
+
+      }
+
+    });
+
+  }, { threshold: 0.4 });
+
+
+
+  dotSections.forEach(id => {
+
+    const el = document.getElementById(id);
+
+    if (el) dotObserver.observe(el);
+
+  });
+
+  // Today's Energy selector
+
+  const energyData = [
+
+    {
+
+      emoji: '🌸',
+
+      label: 'Whimsical',
+
+      desc: "",
+
+      prompt: "What small, playful thing could you do just for the magic of it?"
+
+    },
+
+    {
+
+      emoji: '🌻',
+
+      label: 'Warm',
+
+      desc: "",
+
+      prompt: "Who or what made you feel at home today?"
+
+    },
+
+    {
+
+      emoji: '🔍',
+
+      label: 'Curious',
+
+      desc: "",
+
+      prompt: "What's something ordinary you've never truly wondered about?"
+
+    },
+
+    {
+
+      emoji: '💗',
+
+      label: 'Courageous',
+
+      desc: "",
+
+      prompt: "What would you do today if you chose wonder over doubt?"
+
+    }
+
+  ];
+
+
+
+  function selectEnergy(idx) {
+
+    document.querySelectorAll('.energy-card').forEach((c, i) => {
+
+      c.classList.toggle('active', i === idx);
+
+    });
+
+    const d = energyData[idx];
+
+    document.getElementById('energyResultTitle').textContent = d.label;
+
+    document.getElementById('energyResultDesc').textContent = d.desc;
+
+    document.getElementById('energyResultPrompt').textContent = d.prompt;
+
+    document.querySelector('.energy-result-eyebrow').textContent = d.emoji + ' Your Energy Today';
+
+  }
+
 </script>
 
 </body>
+
 </html>
+
+
